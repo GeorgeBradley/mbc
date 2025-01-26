@@ -1108,161 +1108,139 @@ footer {
 
 
 
-  .service-section {
-    font-family: 'Arial', sans-serif;
-    color: #333;
+ /* Welcome Contact Styles */
+.welcome-contact {
+    padding: 6rem 1rem;
+    background: #f8f9fa;
 }
 
-.service-banner {
-    background: linear-gradient(rgba(22, 34, 57, 0.9), rgba(22, 34, 57, 0.9)),
-                url('https://images.unsplash.com/photo-1503177119275-0aa32b3a9368') center/cover;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.service-overlay {
+.welcome-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2rem;
-    width: 100%;
 }
 
-.service-content {
+.welcome-contact-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.welcome-heading {
+    font-size: 2.5rem;
+    color: #2d3436;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-subheading {
+    color: #636e72;
+    font-size: 1.1rem;
+}
+
+.welcome-contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    align-items: center;
 }
 
-.service-text {
-    color: #fff;
+.welcome-contact-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.service-title {
-    font-size: 2.8rem;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-    line-height: 1.2;
-}
-
-.service-verse {
-    font-size: 1.1rem;
-    font-style: italic;
-    margin-bottom: 3rem;
-    opacity: 0.9;
-}
-
-.service-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-.info-item {
+.welcome-contact-item {
     display: flex;
     gap: 1.5rem;
-    align-items: start;
-    background: rgba(255,255,255,0.1);
+    margin-bottom: 2rem;
     padding: 1.5rem;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
-
-.info-item:hover {
-    transform: translateX(10px);
-}
-
-.info-icon {
-    width: 32px;
-    height: 32px;
-    fill: #fff;
-    flex-shrink: 0;
-}
-
-.info-item h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-    color: #fff;
-}
-
-.info-item p {
-    color: rgba(255,255,255,0.9);
-    line-height: 1.6;
-}
-
-.service-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.action-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
+    border-radius: 12px;
     transition: all 0.3s ease;
 }
 
-.directions-btn {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-    border: 2px solid rgba(255,255,255,0.3);
+.welcome-contact-item:hover {
+    background: #f8f9ff;
+    transform: translateX(10px);
 }
 
-.cta-btn {
-    background: #FFA726;
-    color: #1A237E;
-    border: 2px solid transparent;
+.welcome-contact-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    fill: #4f46e5;
 }
 
-.btn-icon {
-    width: 20px;
-    height: 20px;
+.welcome-contact-title {
+    font-size: 1.25rem;
+    color: #2d3436;
+    margin-bottom: 0.5rem;
 }
 
-.service-image .image-placeholder {
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-    padding: 2rem;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.3);
+.welcome-contact-link {
+    color: #4f46e5;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.welcome-contact-link:hover {
+    color: #3f38b5;
+    text-decoration: underline;
+}
+
+.welcome-contact-text {
+    color: #636e72;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.welcome-contact-map {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    height: 500px;
+}
+
+.welcome-map {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 @media (max-width: 1024px) {
-    .service-content {
+    .welcome-contact-grid {
         grid-template-columns: 1fr;
     }
     
-    .service-image {
-        display: none;
+    .welcome-contact-map {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome-contact {
+        padding: 4rem 1rem;
     }
     
-    .service-title {
-        font-size: 2.2rem;
+    .welcome-heading {
+        font-size: 2rem;
+    }
+    
+    .welcome-contact-item {
+        flex-direction: column;
+        align-items: start;
+        padding: 1rem;
+    }
+    
+    .welcome-contact-map {
+        height: 350px;
     }
 }
 
 @media (max-width: 480px) {
-    .service-actions {
-        flex-direction: column;
+    .welcome-contact-card {
+        padding: 1.5rem;
     }
     
-    .action-btn {
-        justify-content: center;
-    }
-    
-    .info-item {
-        flex-direction: column;
-        align-items: start;
+    .welcome-contact-map {
+        height: 300px;
     }
 }
