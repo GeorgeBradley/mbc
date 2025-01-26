@@ -1244,3 +1244,241 @@ footer {
         height: 300px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #2C5D72;
+    --accent-color: #D46B4D;
+    --warm-gray: #6E6D6A;
+    --soft-cream: #FFF8F0;
+    --tea-green: #D8E2D6;
+}
+
+.invite-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(15deg, var(--soft-cream) 0%, #ffffff 100%);
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.invite-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.circle-frame {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    position: relative;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+}
+
+.floral-border {
+    position: absolute;
+    width: 108%;
+    height: 108%;
+    top: -4%;
+    left: -4%;
+    background: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 0a50 50 0 1 1 0 100 50 50 0 0 1 0-100zm0 8a42 42 0 1 0 0 84 42 42 0 0 0 0-84z" fill="%23D46B4D" opacity="0.15"/></svg>');
+    pointer-events: none;
+}
+
+.circle-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.circle-frame:hover img {
+    transform: scale(1.03);
+}
+
+.invite-header {
+    margin-bottom: 2.5rem;
+}
+
+.subheading {
+    display: block;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.invite-header h1 {
+    color: var(--primary-color);
+    font-size: 2.75rem;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.event-details {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.detail-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    border: 1px solid var(--tea-green);
+    transition: transform 0.3s ease;
+}
+
+.detail-item:hover {
+    transform: translateY(-4px);
+}
+
+.detail-item i {
+    color: var(--accent-color);
+    font-size: 1.75rem;
+    margin-top: 0.25rem;
+    min-width: 40px;
+}
+
+.detail-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+}
+
+.detail-item p {
+    color: var(--warm-gray);
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.rsvp-box {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 2rem;
+    background: var(--primary-color);
+    border-radius: 16px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.rsvp-box:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.15;
+}
+
+.tea-icon {
+    font-size: 2rem;
+    color: white;
+    opacity: 0.9;
+}
+
+.rsvp-content {
+    flex: 1;
+}
+
+.rsvp-content p {
+    margin: 0 0 1.5rem 0;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(212,107,77,0.3);
+}
+
+.cta-button i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover i {
+    transform: translateX(3px);
+}
+
+@media (max-width: 1024px) {
+    .invite-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        max-width: 600px;
+    }
+    
+    .circle-frame {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .invite-header h1 {
+        font-size: 2.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-item {
+        flex-direction: column;
+        align-items: start;
+    }
+    
+    .rsvp-box {
+        flex-direction: column;
+        align-items: start;
+    }
+    
+    .invite-header h1 {
+        font-size: 1.75rem;
+    }
+}
