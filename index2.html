@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Baptism Information Brochure</title>
   <style>
-    /* Reset & basic styling */
+    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
@@ -13,136 +13,135 @@
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #e5e5e5;
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
-    /* Container simulating an A4 tri-fold brochure */
-    .container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, auto);
-      gap: 20px;
-      background: #fff;
-      max-width: 1200px;
-      width: 100%;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    /* Panel styles */
-    .panel {
-      padding: 15px;
-      background-color: #fdfdfd;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: auto;
+      background-color: #f0f0f0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    /* Brochure container mimicking an A4 sheet in landscape */
+    .brochure {
+      width: 297mm;
+      height: 210mm;
+      background: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2mm;
+      padding: 5mm;
+      margin: 20px auto;
+    }
+    /* Panel styling */
+    .panel {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 3mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      background-color: #fafafa;
     }
     .panel h2 {
-      margin-bottom: 10px;
+      font-size: 14pt;
+      margin-bottom: 3mm;
       color: #333;
     }
     .panel p {
-      margin-bottom: 10px;
-      line-height: 1.5;
+      font-size: 10pt;
+      line-height: 1.4;
+      margin-bottom: 3mm;
       color: #555;
     }
     .panel img {
       width: 100%;
-      max-height: 150px;
+      max-height: 40mm;
       object-fit: cover;
-      margin-top: 10px;
-      border-radius: 5px;
+      margin-top: 3mm;
+      border-radius: 3px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Front Side Panels -->
-    <div class="panel" id="panel1">
+  <div>
+    <button id="showFront">Show Front Side</button>
+    <button id="showBack">Show Back Side</button>
+  </div>
+
+  <!-- Front Side: Panels 1-3 -->
+  <div id="brochureFront" class="brochure">
+    <div class="panel">
       <h2>What Is Baptism?</h2>
       <p>
-        Baptism is a public way Jesus followers declare their decision to follow Jesus.
-        A pastor or trusted friend stands with you in a baptism pool (or other body of water)
-        and helps you lean back into the water and come right back up and out. They will then pray for you
-        and usually there will be cheering and clapping!
+        Baptism is a public declaration of your decision to follow Jesus. A pastor or trusted friend assists you in entering the water and coming up, accompanied by prayer, cheering, and clapping.
       </p>
-      <img src="placeholder.jpg" alt="Baptism Ceremony" />
+      <img src="placeholder.jpg" alt="Baptism Ceremony">
     </div>
-    <div class="panel" id="panel2">
-      <h2>Symbolism of Baptism</h2>
+    <div class="panel">
+      <h2>Symbolism</h2>
       <p>
-        Why go underwater? It’s a symbol representing Jesus’ death, resurrection, and new life through Him.
+        Going underwater represents Jesus’ death and the washing away of sins. Rising out of the water signifies the new life that comes through His resurrection.
       </p>
-      <p>
-        Leaning back under the water symbolises your sins being washed away through Jesus’ death.
-        Being raised out of the water is a picture of being brought back to a new life, just as Jesus was raised.
-      </p>
-      <img src="placeholder.jpg" alt="Symbolic Representation" />
+      <img src="placeholder.jpg" alt="Symbolic Representation">
     </div>
-    <div class="panel" id="panel3">
+    <div class="panel">
       <h2>Jesus' Baptism</h2>
       <p>
-        Jesus then appeared, arriving at the Jordan River from Galilee. He wanted John to baptize him.
-        John objected, “I’m the one who needs to be baptized, not you!” But Jesus insisted,
-        “Do it. God’s work, putting things right all these centuries, is coming together right now in this baptism.”
+        Jesus insisted on being baptized by John. As He rose from the water, the heavens opened, the Spirit descended like a dove, and a voice declared: “This is my Son, chosen and marked by my love” (Matthew 3:13-17 MSG).
       </p>
-      <p>
-        As Jesus came up out of the water, the skies opened up, the Spirit descended like a dove,
-        and a voice declared: “This is my Son, chosen and marked by my love, delight of my life.” (Matthew 3:13-17 MSG)
-      </p>
-      <img src="placeholder.jpg" alt="Jesus Baptism" />
-    </div>
-
-    <!-- Back Side Panels -->
-    <div class="panel" id="panel4">
-      <h2>Reflect and Imagine</h2>
-      <p>
-        Now, reread the story and imagine yourself as the person being baptized by John.
-        What’s the water like? How does it feel to hear God’s approval? What does God’s voice say to you specifically?
-        How do you notice the Holy Spirit’s presence?
-      </p>
-      <img src="placeholder.jpg" alt="Reflection" />
-    </div>
-    <div class="panel" id="panel5">
-      <h2>The Great Commission & Declaration</h2>
-      <p>
-        At the end of Jesus’ time on Earth, He gathered His followers and shared this mission:
-        “Go out and train everyone you meet, far and near, in this way of life, marking them by baptism
-        in the threefold name: Father, Son, and Holy Spirit.” (Matthew 28:19 MSG)
-      </p>
-      <p>
-        When you’ve said yes to Jesus’ way of life, baptism becomes a public declaration—
-        a chance to invite your family, friends, and the whole church to celebrate what God has done.
-      </p>
-      <img src="placeholder.jpg" alt="Public Declaration" />
-    </div>
-    <div class="panel" id="panel6">
-      <h2>How and When It Happens</h2>
-      <p>
-        We understand that some people may be anxious about being at the front or going under the water;
-        don’t let this be a barrier. The baptismal pool is filled and you are invited to enter the water.
-      </p>
-      <p>
-        Please wear clothing suitable for getting wet that won’t be see-through when wet.
-        You need to bring: a towel, change of clothes, and a bag for the wet ones!
-      </p>
-      <p>
-        You will also be asked to prepare your testimony—whether as a short passage, video clip,
-        or with someone else reading it for you. Baptism usually happens during a Sunday morning service
-        with your MBC Church family there to support and pray for you.
-      </p>
-      <p>
-        <strong>Pause to consider:</strong> What would it be like for you to take this next step of following Jesus?
-        If you have further questions, please chat with Lou or another member of the leadership team.
-      </p>
-      <img src="placeholder.jpg" alt="Practical Details" />
+      <img src="placeholder.jpg" alt="Jesus' Baptism">
     </div>
   </div>
+
+  <!-- Back Side: Panels 4-6 -->
+  <div id="brochureBack" class="brochure" style="display: none;">
+    <div class="panel">
+      <h2>Reflect & Imagine</h2>
+      <p>
+        Reread the story and imagine yourself as the one being baptized. What is the water like? How does it feel to hear God’s approval and sense the Holy Spirit's presence?
+      </p>
+      <img src="placeholder.jpg" alt="Reflection">
+    </div>
+    <div class="panel">
+      <h2>Great Commission</h2>
+      <p>
+        At the end of His time on Earth, Jesus charged His followers: “Go out and train everyone... marking them by baptism in the threefold name: Father, Son, and Holy Spirit” (Matthew 28:19 MSG). Your baptism is a public declaration of your new life.
+      </p>
+      <img src="placeholder.jpg" alt="Great Commission">
+    </div>
+    <div class="panel">
+      <h2>How & When</h2>
+      <p>
+        Baptism typically occurs during a Sunday service. Wear appropriate clothing (not see-through when wet) and remember to bring a towel, a change of clothes, and a bag for the wet ones. You'll also prepare your testimony, whether in writing, video, or read by someone else.
+      </p>
+      <img src="placeholder.jpg" alt="Baptism Details">
+    </div>
+  </div>
+
+  <script>
+    const frontSide = document.getElementById('brochureFront');
+    const backSide = document.getElementById('brochureBack');
+    document.getElementById('showFront').addEventListener('click', () => {
+      frontSide.style.display = 'grid';
+      backSide.style.display = 'none';
+    });
+    document.getElementById('showBack').addEventListener('click', () => {
+      frontSide.style.display = 'none';
+      backSide.style.display = 'grid';
+    });
+  </script>
 </body>
 </html>
