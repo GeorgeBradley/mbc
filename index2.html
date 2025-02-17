@@ -19,7 +19,7 @@
     }
     body {
       font-family: 'Montserrat', sans-serif;
-      background: #f5f5f5;
+      background: #e0f7fa;
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -54,100 +54,118 @@
       background: #005f7d;
       color: #fff;
       border: none;
-      border-radius: 4px;
+      border-radius: 25px;
       cursor: pointer;
       font-size: 1rem;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     .toggle-buttons button:hover {
       background: #003d52;
+      transform: scale(1.05);
     }
     /* Brochure Container (A4 Landscape: 297mm x 210mm) */
     .brochure {
       width: 297mm;
       height: 210mm;
       background: #fff;
-      border: 1px solid #ccc;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      border: 2px solid #005f7d;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       padding: 10mm;
       gap: 5mm;
-      overflow: hidden;
+      position: relative;
     }
     /* Panel Styling */
     .panel {
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 5mm;
-      overflow-y: auto;
-      background: #fafafa;
+      background: linear-gradient(135deg, #ffffff, #e8f0fe);
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 8mm;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow-y: auto;
+      transition: transform 0.3s;
+    }
+    .panel:hover {
+      transform: scale(1.02);
     }
     .panel header {
-      margin-bottom: 5mm;
       text-align: center;
+      margin-bottom: 6mm;
+      border-bottom: 2px solid #005f7d;
+      padding-bottom: 4mm;
     }
     .panel header i {
-      font-size: 1.5em;
-      margin-bottom: 5px;
+      font-size: 1.8em;
       color: #005f7d;
+      margin-bottom: 4px;
     }
     .panel h2 {
-      font-size: 14pt;
+      font-size: 16pt;
       margin-bottom: 2mm;
     }
     .panel h3 {
-      font-size: 11pt;
-      margin-bottom: 5mm;
+      font-size: 12pt;
       font-weight: 400;
+      margin-bottom: 4mm;
     }
     .panel p, .panel li {
-      font-size: 10pt;
-      line-height: 1.4;
+      font-size: 11pt;
+      line-height: 1.5;
       margin-bottom: 4mm;
     }
     .panel ul {
       list-style: disc inside;
-      margin-bottom: 5mm;
+      margin-bottom: 4mm;
     }
     .panel img {
       width: 100%;
       max-height: 35mm;
       object-fit: cover;
-      border-radius: 3px;
+      border-radius: 5px;
       margin-top: 5mm;
     }
     /* Contact Section in Panel 6 */
     .contact {
-      border-top: 1px solid #ddd;
-      padding-top: 5mm;
-      margin-top: 5mm;
+      border-top: 1px solid #005f7d;
+      padding-top: 6mm;
       text-align: center;
     }
     .contact img {
       width: 80px;
-      height: auto;
+      height: 80px;
+      object-fit: cover;
       border-radius: 50%;
-      margin-bottom: 5px;
+      margin: 8px auto;
+      display: block;
     }
     /* Hide the back side by default */
     #brochureBack {
       display: none;
+    }
+    /* Custom scrollbar for panels */
+    .panel::-webkit-scrollbar {
+      width: 6px;
+    }
+    .panel::-webkit-scrollbar-thumb {
+      background: #005f7d;
+      border-radius: 3px;
     }
   </style>
 </head>
 <body>
   <!-- Header with MBC Logo -->
   <header>
-    <img src="https://via.placeholder.com/200x100?text=MBC+Logo" alt="MBC Logo">
+    <img src="https://source.unsplash.com/200x100/?church" alt="MBC Logo">
   </header>
+  
   <!-- Toggle Buttons -->
   <div class="toggle-buttons">
-    <button id="frontBtn">Front Side</button>
-    <button id="backBtn">Back Side</button>
+    <button id="frontBtn"><i class="fas fa-chevron-left"></i> Front Side</button>
+    <button id="backBtn">Back Side <i class="fas fa-chevron-right"></i></button>
   </div>
   
   <!-- Front Side: Panels 1, 2, 3 -->
@@ -162,28 +180,15 @@
       <p>
         Baptism is a public way Jesus followers declare their decision to follow Jesus. A pastor or trusted friend stands with you in a baptism pool (or other body of water) and helps you lean back into the water and come right back up and out. They will then pray for you and usually there will be cheering and clapping!
       </p>
-      <img src="https://source.unsplash.com/300x200/?baptism,ceremony" alt="Baptism Ceremony">
-    </div>
-    <!-- Panel 2: Why Go Underwater? (Symbolism) -->
-    <div class="panel">
-      <header>
-        <i class="fas fa-book-open"></i>
-        <h2>Why Go Underwater?</h2>
-        <h3>Symbolism</h3>
-      </header>
-      <p>
-        It’s a symbol representing Jesus’ death, resurrection, and new life through Him.
-      </p>
+      <p><strong>Symbolism:</strong></p>
       <ul>
         <li>Leaning back under the water symbolises your sins being washed away through Jesus’ death.</li>
         <li>Being raised out of the water is a picture of being brought back to a new life, like Jesus was raised back to life.</li>
       </ul>
-      <p>
-        This public declaration of our new life with Jesus is similar to the way Jesus Himself was baptized.
-      </p>
-      <img src="https://source.unsplash.com/300x200/?spiritual,water" alt="Symbolic Representation">
+      <p>This public declaration of our new life with Jesus is similar to the way Jesus Himself was baptized.</p>
+      <img src="https://source.unsplash.com/300x200/?baptism,water" alt="Baptism Ceremony">
     </div>
-    <!-- Panel 3: Jesus' Baptism -->
+    <!-- Panel 2: Jesus' Baptism -->
     <div class="panel">
       <header>
         <i class="fas fa-church"></i>
@@ -194,15 +199,11 @@
         Jesus then appeared, arriving at the Jordan River from Galilee. He wanted John to baptize him. John objected, “I’m the one who needs to be baptized, not you!” But Jesus insisted. “Do it. God’s work, putting things right all these centuries, is coming together right now in this baptism.” So John did it.
       </p>
       <p>
-        The moment Jesus came up out of the baptismal waters, the skies opened up and he saw God’s Spirit—it looked like a dove—descending and landing on him. And along with the Spirit, a voice: “This is my Son, chosen and marked by my love, delight of my life.” (Matthew 3:13-17 MSG)
+        The moment Jesus came up out of the baptismal waters, the skies opened up and he saw God’s Spirit—it looked like a dove—descending and landing on him. And along with the Spirit, a voice: “This is my Son, chosen and marked by my love, delight of my life.” <em>(Matthew 3:13-17 MSG)</em>
       </p>
       <img src="https://source.unsplash.com/300x200/?jesus,baptism" alt="Jesus Baptism">
     </div>
-  </div>
-  
-  <!-- Back Side: Panels 4, 5, 6 -->
-  <div id="brochureBack" class="brochure">
-    <!-- Panel 4: Reflect & Imagine -->
+    <!-- Panel 3: Reflect & Imagine -->
     <div class="panel">
       <header>
         <i class="fas fa-lightbulb"></i>
@@ -214,7 +215,11 @@
       </p>
       <img src="https://source.unsplash.com/300x200/?reflection,water" alt="Reflection">
     </div>
-    <!-- Panel 5: Great Commission & Declaration -->
+  </div>
+  
+  <!-- Back Side: Panels 4, 5, 6 -->
+  <div id="brochureBack" class="brochure">
+    <!-- Panel 4: Great Commission -->
     <div class="panel">
       <header>
         <i class="fas fa-bullhorn"></i>
@@ -225,14 +230,14 @@
         At the end of Jesus’ time on Earth, He gathered His followers together and shared this mission:
       </p>
       <p>
-        “Go out and train everyone you meet, far and near, in this way of life, marking them by baptism in the threefold name: Father, Son, and Holy Spirit.” (Matthew 28:19 MSG)
+        “Go out and train everyone you meet, far and near, in this way of life, marking them by baptism in the threefold name: Father, Son, and Holy Spirit.” <em>(Matthew 28:19 MSG)</em>
       </p>
       <p>
-        When you’ve said yes to Jesus’ way of life, baptism is one of the next steps the Bible encourages us to take. It’s a public declaration that says to the world, “I have decided to follow Jesus!” It’s a great opportunity to invite your family and friends (as well as the rest of the church) to celebrate what God has done for you. It will be a special and joyful time for both you and everyone else present.
+        When you’ve said yes to Jesus’ way of life, baptism is one of the next steps the Bible encourages us to take. It’s a public declaration that says to the world, “I have decided to follow Jesus!” It’s a great opportunity to invite your family and friends (as well as the rest of the church) to celebrate what God has done for you.
       </p>
       <img src="https://source.unsplash.com/300x200/?church,community" alt="Great Commission">
     </div>
-    <!-- Panel 6: How and When It Happens + Contact Details -->
+    <!-- Panel 5: How and When It Happens -->
     <div class="panel">
       <header>
         <i class="fas fa-calendar-alt"></i>
@@ -243,19 +248,32 @@
         We understand that some people are particularly anxious about being at the front or about going under the water, but don’t let this be a barrier – there is flexibility about how we do this. The baptismal pool is filled and you are invited to enter the water.
       </p>
       <p>
-        It is best to wear clothing suitable for getting wet that will not be see-through when it gets wet. You need to bring: a towel, change of clothes and a bag for the wet ones!
+        It is best to wear clothing suitable for getting wet that will not be see-through when it gets wet. You need to bring:
       </p>
+      <ul>
+        <li>A towel</li>
+        <li>Change of clothes</li>
+        <li>A bag for the wet ones!</li>
+      </ul>
       <p>
         You will be asked to prepare the story (Testimony) of how and why you felt you wanted to be Baptised. This can be done in a variety of ways: a short passage to read, a video clip – and it doesn’t have to be read by you if you feel you can’t.
       </p>
       <p>
         It usually happens during a Sunday morning service and your MBC Church family will be there to support and pray for you from that moment and for the rest of your journey with God.
       </p>
+      <img src="https://source.unsplash.com/300x200/?service,baptism" alt="How and When">
+    </div>
+    <!-- Panel 6: Next Steps & Contact Details -->
+    <div class="panel">
+      <header>
+        <i class="fas fa-question-circle"></i>
+        <h2>Next Steps & Contact</h2>
+        <h3>Pause to Consider</h3>
+      </header>
       <p>
-        <strong>Pause to consider:</strong> What would it be like for you to take this next step of following Jesus? If you have further questions please chat to Lou or someone else on the leadership team.
+        What would it be like for you to take this next step of following Jesus? If you have further questions please chat to Lou or someone else on the leadership team.
       </p>
-      <img src="https://source.unsplash.com/300x200/?water,ritual" alt="How and When">
-      <!-- Contact Details & Baptism Photo -->
+      <img src="https://source.unsplash.com/300x200/?celebration,baptism" alt="Celebration">
       <div class="contact">
         <h3>Contact Us</h3>
         <p><strong>MBC Church</strong></p>
@@ -263,7 +281,7 @@
         <p>Phone: (555) 555-5555</p>
         <p>Email: info@mbcchurch.com</p>
         <p>Contact: Lou – lou@mbcchurch.com</p>
-        <img src="https://source.unsplash.com/100x100/?baptism,person" alt="Baptism Photo">
+        <img src="https://source.unsplash.com/100x100/?portrait,baptism" alt="Baptism Photo">
       </div>
     </div>
   </div>
