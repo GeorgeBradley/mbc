@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baptism Leaflet - Milton Baptist Church (3 Panels with Fold Lines)</title>
+    <title>Baptism Leaflet - Milton Baptist Church</title>
     <style>
         body {
             margin: 0;
@@ -30,7 +30,7 @@
             box-sizing: border-box;
             position: relative;
             text-align: left;
-            border-right: 3px dashed #ff0000; /* Thicker red dashed line for fold */
+            border-right: 3px dashed #ff0000; /* Red dashed line for fold (visible in browser) */
         }
 
         .panel:last-child {
@@ -38,7 +38,7 @@
         }
 
         .front {
-            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); /* Light teal gradient */
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); /* Light teal gradient (MBC colors) */
             color: #004d40; /* Dark teal text */
         }
 
@@ -48,7 +48,7 @@
         }
 
         .back {
-            background: linear-gradient(135deg, #f1f8e9 0%, #c8e6c9 100%); /* Light green gradient */
+            background: linear-gradient(135deg, #f1f8e9 0%, #c8e6c9 100%); /* Light green gradient (MBC-inspired) */
             color: #2e7d32; /* Dark green text */
         }
 
@@ -104,6 +104,14 @@
             height: auto;
             margin: 5mm auto;
             display: block;
+        }
+
+        .baptism-photo {
+            width: 50mm;
+            height: auto;
+            margin: 5mm auto;
+            display: block;
+            border-radius: 5px;
         }
 
         .contact {
@@ -167,6 +175,7 @@
             <h3>Jesus’ Baptism</h3>
             <p>“Jesus then appeared, arriving at the Jordan River… John baptized Him, and the skies opened, with God’s Spirit descending like a dove and a voice saying, ‘This is my Son, chosen and marked by my love, delight of my life.’ — Matthew 3:13-17 MSG”</p>
             <p>Now, reread the story and imagine yourself as the person being baptized by John. What’s the water like? How does it feel to hear God’s approval? What does God’s voice say to you specifically? How do you notice the Holy Spirit’s presence?</p>
+            <div class="baptism-photo">[Photo: Someone being baptized at MBC]</div>
             <div class="icon">[Icon: Cross]</div>
             <h3>Jesus’ Mission</h3>
             <p>“Go out and train everyone you meet, far and near, in this way of life, marking them by baptism in the threefold name: Father, Son, and Holy Spirit.” — Matthew 28:19 MSG</p>
