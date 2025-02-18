@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baptism Leaflet - Milton Baptist Church</title>
+    <title>Baptism Leaflet - Milton Baptist Church (with Fold Lines)</title>
     <style>
         body {
             margin: 0;
@@ -30,11 +30,11 @@
             box-sizing: border-box;
             position: relative;
             text-align: left;
-            border-right: 1px dashed #ddd;
+            border-right: 2px dashed #ff0000; /* Red dashed line for fold (visible in browser) */
         }
 
         .panel:last-child {
-            border-right: none;
+            border-right: none; /* Remove the right border for the last panel */
         }
 
         .front {
@@ -118,6 +118,19 @@
         p, li {
             word-wrap: break-word;
         }
+
+        /* Note about fold lines (optional, visible in browser) */
+        .fold-note {
+            position: absolute;
+            top: 10px;
+            right: -15px;
+            transform: rotate(90deg);
+            font-size: 8px;
+            color: #ff0000;
+            background-color: #fff;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -128,6 +141,7 @@
             <p>A public way Jesus followers declare their decision to follow Him. A pastor or trusted friend stands with you in a baptism pool (or other water), immersing you as you lean back and rise up, symbolizing Jesus’ death, resurrection, and new life. We celebrate with prayer, cheering, and clapping from your MBC Church family!</p>
             <div class="icon">[Icon: Dove]</div>
             <img src="milton_baptist_logo.png" alt="Milton Baptist Church Logo" class="logo" style="display: block;">
+            <div class="fold-note">Fold Here (Right Panel First)</div>
         </div>
 
         <!-- Middle Panel (Center - Main Content) -->
@@ -142,6 +156,7 @@
             <h3>Jesus’ Mission</h3>
             <p>“Go out and train everyone you meet, far and near, in this way of life, marking them by baptism in the threefold name: Father, Son, and Holy Spirit.” — Matthew 28:19 MSG</p>
             <p>When you’ve said yes to Jesus’ way, baptism is a next step the Bible encourages.</p>
+            <div class="fold-note">Fold Here (Left Panel Over Right)</div>
         </div>
 
         <!-- Back Panel (Right - Practical Info) -->
