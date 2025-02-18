@@ -1,306 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MBC Baptism Brochure</title>
-  <!-- Google Font: Montserrat -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* Global Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #e0f7fa;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    h2, h3 {
-      color: #005f7d;
-    }
-    p, li {
-      color: #333;
-    }
-    a {
-      color: #005f7d;
-      text-decoration: none;
-    }
-    /* Header with MBC Logo */
-    header {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    header img {
-      max-width: 200px;
-      height: auto;
-    }
-    /* Toggle Buttons */
-    .toggle-buttons {
-      margin-bottom: 20px;
-    }
-    .toggle-buttons button {
-      padding: 10px 20px;
-      margin: 0 10px;
-      background: #005f7d;
-      color: #fff;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s, transform 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .toggle-buttons button:hover {
-      background: #003d52;
-      transform: scale(1.05);
-    }
-    /* Brochure Container (A4 Landscape: 297mm x 210mm) */
-    .brochure {
-      width: 297mm;
-      height: 210mm;
-      background: #fff;
-      border: 2px solid #005f7d;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      padding: 10mm;
-      gap: 5mm;
-      position: relative;
-    }
-    /* Panel Styling */
-    .panel {
-      background: linear-gradient(135deg, #ffffff, #e8f0fe);
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      padding: 8mm;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow-y: auto;
-      transition: transform 0.3s;
-    }
-    .panel:hover {
-      transform: scale(1.02);
-    }
-    .panel header {
-      text-align: center;
-      margin-bottom: 6mm;
-      border-bottom: 2px solid #005f7d;
-      padding-bottom: 4mm;
-    }
-    .panel header i {
-      font-size: 1.8em;
-      color: #005f7d;
-      margin-bottom: 4px;
-    }
-    .panel h2 {
-      font-size: 16pt;
-      margin-bottom: 2mm;
-    }
-    .panel h3 {
-      font-size: 12pt;
-      font-weight: 400;
-      margin-bottom: 4mm;
-    }
-    .panel p, .panel li {
-      font-size: 11pt;
-      line-height: 1.5;
-      margin-bottom: 4mm;
-    }
-    .panel ul {
-      list-style: disc inside;
-      margin-bottom: 4mm;
-    }
-    .panel img {
-      width: 100%;
-      max-height: 35mm;
-      object-fit: cover;
-      border-radius: 5px;
-      margin-top: 5mm;
-    }
-    /* Contact Section in Panel 6 */
-    .contact {
-      border-top: 1px solid #005f7d;
-      padding-top: 6mm;
-      text-align: center;
-    }
-    .contact img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin: 8px auto;
-      display: block;
-    }
-    /* Hide the back side by default */
-    #brochureBack {
-      display: none;
-    }
-    /* Custom scrollbar for panels */
-    .panel::-webkit-scrollbar {
-      width: 6px;
-    }
-    .panel::-webkit-scrollbar-thumb {
-      background: #005f7d;
-      border-radius: 3px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baptism Leaflet</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .leaflet {
+            width: 210mm;
+            height: 297mm;
+            display: flex;
+            flex-direction: row;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .panel {
+            width: 70mm;
+            height: 100%;
+            padding: 5mm;
+            box-sizing: border-box;
+            position: relative;
+            text-align: left;
+        }
+
+        .panel:not(:last-child) {
+            border-right: 1px dashed #ccc;
+        }
+
+        .front {
+            background-color: #e0f7fa; /* Light blue for front panel */
+            color: #006064;
+        }
+
+        .middle {
+            background-color: #fff; /* White for middle panel */
+            color: #333;
+        }
+
+        .back {
+            background-color: #f1f8e9; /* Light green for back panel */
+            color: #33691e;
+        }
+
+        h1 {
+            font-size: 18px;
+            margin: 0 0 10px;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin: 15px 0 5px;
+        }
+
+        h3 {
+            font-size: 14px;
+            margin: 10px 0 5px;
+        }
+
+        p, ul {
+            font-size: 12px;
+            line-height: 1.4;
+            margin: 0 0 10px;
+        }
+
+        ul {
+            padding-left: 15px;
+        }
+
+        .icon {
+            width: 20mm;
+            height: 20mm;
+            margin: 5mm auto;
+            background-color: #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #666;
+        }
+
+        /* Ensure text wraps within narrow panels */
+        p, li {
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
-  <!-- Header with MBC Logo -->
-  <header>
-    <img src="https://source.unsplash.com/200x100/?church" alt="MBC Logo">
-  </header>
-  
-  <!-- Toggle Buttons -->
-  <div class="toggle-buttons">
-    <button id="frontBtn"><i class="fas fa-chevron-left"></i> Front Side</button>
-    <button id="backBtn">Back Side <i class="fas fa-chevron-right"></i></button>
-  </div>
-  
-  <!-- Front Side: Panels 1, 2, 3 -->
-  <div id="brochureFront" class="brochure">
-    <!-- Panel 1: What Is Baptism? -->
-    <div class="panel">
-      <header>
-        <i class="fas fa-water"></i>
-        <h2>What Is Baptism?</h2>
-        <h3>Declaration of Faith</h3>
-      </header>
-      <p>
-        Baptism is a public way Jesus followers declare their decision to follow Jesus. A pastor or trusted friend stands with you in a baptism pool (or other body of water) and helps you lean back into the water and come right back up and out. They will then pray for you and usually there will be cheering and clapping!
-      </p>
-      <p><strong>Symbolism:</strong></p>
-      <ul>
-        <li>Leaning back under the water symbolises your sins being washed away through Jesus’ death.</li>
-        <li>Being raised out of the water is a picture of being brought back to a new life, like Jesus was raised back to life.</li>
-      </ul>
-      <p>This public declaration of our new life with Jesus is similar to the way Jesus Himself was baptized.</p>
-      <img src="https://source.unsplash.com/300x200/?baptism,water" alt="Baptism Ceremony">
-    </div>
-    <!-- Panel 2: Jesus' Baptism -->
-    <div class="panel">
-      <header>
-        <i class="fas fa-church"></i>
-        <h2>Jesus' Baptism</h2>
-        <h3>Divine Example</h3>
-      </header>
-      <p>
-        Jesus then appeared, arriving at the Jordan River from Galilee. He wanted John to baptize him. John objected, “I’m the one who needs to be baptized, not you!” But Jesus insisted. “Do it. God’s work, putting things right all these centuries, is coming together right now in this baptism.” So John did it.
-      </p>
-      <p>
-        The moment Jesus came up out of the baptismal waters, the skies opened up and he saw God’s Spirit—it looked like a dove—descending and landing on him. And along with the Spirit, a voice: “This is my Son, chosen and marked by my love, delight of my life.” <em>(Matthew 3:13-17 MSG)</em>
-      </p>
-      <img src="https://source.unsplash.com/300x200/?jesus,baptism" alt="Jesus Baptism">
-    </div>
-    <!-- Panel 3: Reflect & Imagine -->
-    <div class="panel">
-      <header>
-        <i class="fas fa-lightbulb"></i>
-        <h2>Reflect & Imagine</h2>
-        <h3>Personal Reflection</h3>
-      </header>
-      <p>
-        Now, reread the story and imagine yourself as the person being baptized by John. What’s the water like? How does it feel to hear God’s approval? What does God’s voice say to you specifically? How do you notice the Holy Spirit’s presence?
-      </p>
-      <img src="https://source.unsplash.com/300x200/?reflection,water" alt="Reflection">
-    </div>
-  </div>
-  
-  <!-- Back Side: Panels 4, 5, 6 -->
-  <div id="brochureBack" class="brochure">
-    <!-- Panel 4: Great Commission -->
-    <div class="panel">
-      <header>
-        <i class="fas fa-bullhorn"></i>
-        <h2>Great Commission</h2>
-        <h3>Call to Action</h3>
-      </header>
-      <p>
-        At the end of Jesus’ time on Earth, He gathered His followers together and shared this mission:
-      </p>
-      <p>
-        “Go out and train everyone you meet, far and near, in this way of life, marking them by baptism in the threefold name: Father, Son, and Holy Spirit.” <em>(Matthew 28:19 MSG)</em>
-      </p>
-      <p>
-        When you’ve said yes to Jesus’ way of life, baptism is one of the next steps the Bible encourages us to take. It’s a public declaration that says to the world, “I have decided to follow Jesus!” It’s a great opportunity to invite your family and friends (as well as the rest of the church) to celebrate what God has done for you.
-      </p>
-      <img src="https://source.unsplash.com/300x200/?church,community" alt="Great Commission">
-    </div>
-    <!-- Panel 5: How and When It Happens -->
-    <div class="panel">
-      <header>
-        <i class="fas fa-calendar-alt"></i>
-        <h2>How and When It Happens</h2>
-        <h3>Practical Details</h3>
-      </header>
-      <p>
-        We understand that some people are particularly anxious about being at the front or about going under the water, but don’t let this be a barrier – there is flexibility about how we do this. The baptismal pool is filled and you are invited to enter the water.
-      </p>
-      <p>
-        It is best to wear clothing suitable for getting wet that will not be see-through when it gets wet. You need to bring:
-      </p>
-      <ul>
-        <li>A towel</li>
-        <li>Change of clothes</li>
-        <li>A bag for the wet ones!</li>
-      </ul>
-      <p>
-        You will be asked to prepare the story (Testimony) of how and why you felt you wanted to be Baptised. This can be done in a variety of ways: a short passage to read, a video clip – and it doesn’t have to be read by you if you feel you can’t.
-      </p>
-      <p>
-        It usually happens during a Sunday morning service and your MBC Church family will be there to support and pray for you from that moment and for the rest of your journey with God.
-      </p>
-      <img src="https://source.unsplash.com/300x200/?service,baptism" alt="How and When">
-    </div>
-    <!-- Panel 6: Next Steps & Contact Details -->
-    <div class="panel">
-      <header>
-        <i class="fas fa-question-circle"></i>
-        <h2>Next Steps & Contact</h2>
-        <h3>Pause to Consider</h3>
-      </header>
-      <p>
-        What would it be like for you to take this next step of following Jesus? If you have further questions please chat to Lou or someone else on the leadership team.
-      </p>
-      <img src="https://source.unsplash.com/300x200/?celebration,baptism" alt="Celebration">
-      <div class="contact">
-        <h3>Contact Us</h3>
-        <p><strong>MBC Church</strong></p>
-        <p>123 Main Street, Anytown, Country</p>
-        <p>Phone: (555) 555-5555</p>
-        <p>Email: info@mbcchurch.com</p>
-        <p>Contact: Lou – lou@mbcchurch.com</p>
-        <img src="https://source.unsplash.com/100x100/?portrait,baptism" alt="Baptism Photo">
-      </div>
-    </div>
-  </div>
-  
-  <!-- JavaScript for toggling brochure sides -->
-  <script>
-    const frontBtn = document.getElementById('frontBtn');
-    const backBtn = document.getElementById('backBtn');
-    const brochureFront = document.getElementById('brochureFront');
-    const brochureBack = document.getElementById('brochureBack');
+    <div class="leaflet">
+        <!-- Front Panel (Left - Cover) -->
+        <div class="panel front">
+            <h1>What Is Baptism?</h1>
+            <p>A public declaration of your decision to follow Jesus. You’ll be immersed in water by a pastor or a friend, symbolizing Jesus’ death and resurrection. Afterward, we celebrate with prayer and cheering from your church family.</p>
+            <div class="icon">[Icon: Dove]</div>
+        </div>
 
-    frontBtn.addEventListener('click', () => {
-      brochureFront.style.display = 'grid';
-      brochureBack.style.display = 'none';
-    });
-    backBtn.addEventListener('click', () => {
-      brochureFront.style.display = 'none';
-      brochureBack.style.display = 'grid';
-    });
-  </script>
+        <!-- Middle Panel (Center - Main Content) -->
+        <div class="panel middle">
+            <h2>Why Baptism?</h2>
+            <p>Baptism symbolizes Jesus’ death, resurrection, and your new life in Him. Going underwater represents your sins being washed away; rising up pictures your fresh start.</p>
+            <div class="icon">[Icon: Water]</div>
+            <h3>Jesus’ Baptism</h3>
+            <p>“Jesus was baptized by John, and God said, ‘This is my Son, whom I love.’” — Matthew 3:13-17</p>
+            <p>Imagine your baptism: What’s the water like? How does God’s voice speak to you?</p>
+            <div class="icon">[Icon: Cross]</div>
+            <h3>Jesus’ Mission</h3>
+            <p>“Go and make disciples, baptizing them in the name of the Father, Son, and Holy Spirit.” — Matthew 28:19</p>
+            <p>It’s a step in following Jesus.</p>
+        </div>
+
+        <!-- Back Panel (Right - Practical Info) -->
+        <div class="panel back">
+            <h2>How, When & Next Steps</h2>
+            <p>Baptism happens during a Sunday service at MBC. Your church family will support you with prayer and encouragement.</p>
+            <h3>What to Bring</h3>
+            <ul>
+                <li>Towel</li>
+                <li>Change of clothes</li>
+                <li>Bag for wet clothes</li>
+            </ul>
+            <p>Wear suitable clothing (not see-through when wet). Flexible options are available if you’re anxious about water or speaking.</p>
+            <div class="icon">[Icon: Towel]</div>
+            <h3>Your Testimony</h3>
+            <p>Share why you chose baptism (written, video, or read by someone else if preferred).</p>
+            <div class="icon">[Icon: Speech Bubble]</div>
+            <h3>Next Steps</h3>
+            <p>Invite your family and friends to celebrate this special moment with you. Chat with Lou or a leader for questions!</p>
+        </div>
+    </div>
 </body>
 </html>
