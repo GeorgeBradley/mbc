@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baptism Leaflet</title>
+    <title>Baptism Leaflet - Milton Baptist Church</title>
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
         }
 
@@ -18,8 +18,9 @@
             flex-direction: row;
             margin: 20px auto;
             border: 1px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             background-color: #fff;
+            overflow: hidden;
         }
 
         .panel {
@@ -29,30 +30,33 @@
             box-sizing: border-box;
             position: relative;
             text-align: left;
+            border-right: 1px dashed #ddd;
         }
 
-        .panel:not(:last-child) {
-            border-right: 1px dashed #ccc;
+        .panel:last-child {
+            border-right: none;
         }
 
         .front {
-            background-color: #e0f7fa; /* Light blue for front panel */
-            color: #006064;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); /* Light teal gradient */
+            color: #004d40; /* Dark teal text */
         }
 
         .middle {
-            background-color: #fff; /* White for middle panel */
+            background-color: #fff;
             color: #333;
         }
 
         .back {
-            background-color: #f1f8e9; /* Light green for back panel */
-            color: #33691e;
+            background: linear-gradient(135deg, #f1f8e9 0%, #c8e6c9 100%); /* Light green gradient */
+            color: #2e7d32; /* Dark green text */
         }
 
         h1 {
             font-size: 18px;
+            font-weight: bold;
             margin: 0 0 10px;
+            color: #004d40;
         }
 
         h2 {
@@ -67,12 +71,19 @@
 
         p, ul {
             font-size: 12px;
-            line-height: 1.4;
+            line-height: 1.5;
             margin: 0 0 10px;
+            color: #333;
         }
 
         ul {
             padding-left: 15px;
+            list-style: none;
+        }
+
+        ul li:before {
+            content: "✓ ";
+            color: #2e7d32;
         }
 
         .icon {
@@ -88,6 +99,21 @@
             color: #666;
         }
 
+        .logo {
+            width: 40mm;
+            height: auto;
+            margin: 5mm auto;
+            display: block;
+        }
+
+        .contact {
+            font-size: 10px;
+            color: #004d40;
+            margin-top: 10px;
+            border-top: 1px solid #ddd;
+            padding-top: 5px;
+        }
+
         /* Ensure text wraps within narrow panels */
         p, li {
             word-wrap: break-word;
@@ -99,41 +125,49 @@
         <!-- Front Panel (Left - Cover) -->
         <div class="panel front">
             <h1>What Is Baptism?</h1>
-            <p>A public declaration of your decision to follow Jesus. You’ll be immersed in water by a pastor or a friend, symbolizing Jesus’ death and resurrection. Afterward, we celebrate with prayer and cheering from your church family.</p>
+            <p>A public way Jesus followers declare their decision to follow Him. A pastor or trusted friend stands with you in a baptism pool (or other water), immersing you as you lean back and rise up, symbolizing Jesus’ death, resurrection, and new life. We celebrate with prayer, cheering, and clapping from your MBC Church family!</p>
             <div class="icon">[Icon: Dove]</div>
+            <img src="milton_baptist_logo.png" alt="Milton Baptist Church Logo" class="logo" style="display: block;">
         </div>
 
         <!-- Middle Panel (Center - Main Content) -->
         <div class="panel middle">
             <h2>Why Baptism?</h2>
-            <p>Baptism symbolizes Jesus’ death, resurrection, and your new life in Him. Going underwater represents your sins being washed away; rising up pictures your fresh start.</p>
+            <p>It’s a symbol of Jesus’ death, resurrection, and new life through Him. Leaning back under the water signifies your sins being washed away through Jesus’ death. Being raised out of the water pictures your new life, like Jesus’ resurrection. This public declaration mirrors how Jesus Himself was baptized.</p>
             <div class="icon">[Icon: Water]</div>
             <h3>Jesus’ Baptism</h3>
-            <p>“Jesus was baptized by John, and God said, ‘This is my Son, whom I love.’” — Matthew 3:13-17</p>
-            <p>Imagine your baptism: What’s the water like? How does God’s voice speak to you?</p>
+            <p>“Jesus then appeared, arriving at the Jordan River… John baptized Him, and the skies opened, with God’s Spirit descending like a dove and a voice saying, ‘This is my Son, chosen and marked by my love, delight of my life.’ — Matthew 3:13-17 MSG”</p>
+            <p>Now, reread the story and imagine yourself as the person being baptized by John. What’s the water like? How does it feel to hear God’s approval? What does God’s voice say to you specifically? How do you notice the Holy Spirit’s presence?</p>
             <div class="icon">[Icon: Cross]</div>
             <h3>Jesus’ Mission</h3>
-            <p>“Go and make disciples, baptizing them in the name of the Father, Son, and Holy Spirit.” — Matthew 28:19</p>
-            <p>It’s a step in following Jesus.</p>
+            <p>“Go out and train everyone you meet, far and near, in this way of life, marking them by baptism in the threefold name: Father, Son, and Holy Spirit.” — Matthew 28:19 MSG</p>
+            <p>When you’ve said yes to Jesus’ way, baptism is a next step the Bible encourages.</p>
         </div>
 
         <!-- Back Panel (Right - Practical Info) -->
         <div class="panel back">
-            <h2>How, When & Next Steps</h2>
-            <p>Baptism happens during a Sunday service at MBC. Your church family will support you with prayer and encouragement.</p>
+            <h2>How & When It Happens</h2>
+            <p>Baptism usually happens during a Sunday morning service at Milton Baptist Church. Your MBC Church family will support and pray for you from that moment and for the rest of your journey with God.</p>
             <h3>What to Bring</h3>
             <ul>
                 <li>Towel</li>
                 <li>Change of clothes</li>
                 <li>Bag for wet clothes</li>
             </ul>
-            <p>Wear suitable clothing (not see-through when wet). Flexible options are available if you’re anxious about water or speaking.</p>
+            <p>Wear clothing suitable for getting wet that won’t be see-through when wet. If you’re anxious about being at the front or going underwater, don’t worry—there’s flexibility in how we do it.</p>
             <div class="icon">[Icon: Towel]</div>
             <h3>Your Testimony</h3>
-            <p>Share why you chose baptism (written, video, or read by someone else if preferred).</p>
+            <p>Prepare your story of how and why you felt called to be baptized. This can be a short passage to read, a video clip, or read by someone else if you prefer—it’s flexible!</p>
             <div class="icon">[Icon: Speech Bubble]</div>
             <h3>Next Steps</h3>
-            <p>Invite your family and friends to celebrate this special moment with you. Chat with Lou or a leader for questions!</p>
+            <p>It’s a great opportunity to invite your family and friends (and the rest of the church) to celebrate what God has done for you. It’ll be a special and joyful time for you and everyone present. If you have further questions, please chat to Rev. Dr. Lou Luft or someone else on the leadership team.</p>
+            <div class="contact">
+                <p><strong>Contact Rev. Dr. Lou Luft</strong><br>
+                Email: lou.luft@milton-baptist.org.uk<br>
+                Milton Baptist Church, Baytree Road, Weston-super-Mare, Somerset, BS22 8HJ, UK<br>
+                Phone: 07384 252147<br>
+                Website: https://www.milton-baptist.org.uk</p>
+            </div>
         </div>
     </div>
 </body>
