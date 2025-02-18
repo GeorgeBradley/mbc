@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baptism Leaflet - Milton Baptist Church (with Fold Lines)</title>
+    <title>Baptism Leaflet - Milton Baptist Church (3 Panels with Fold Lines)</title>
     <style>
         body {
             margin: 0;
@@ -30,7 +30,7 @@
             box-sizing: border-box;
             position: relative;
             text-align: left;
-            border-right: 2px dashed #ff0000; /* Red dashed line for fold (visible in browser) */
+            border-right: 3px dashed #ff0000; /* Thicker red dashed line for fold */
         }
 
         .panel:last-child {
@@ -119,15 +119,28 @@
             word-wrap: break-word;
         }
 
-        /* Note about fold lines (optional, visible in browser) */
+        /* Fold notes for clarity */
         .fold-note {
             position: absolute;
             top: 10px;
-            right: -15px;
+            right: -20px;
             transform: rotate(90deg);
             font-size: 8px;
             color: #ff0000;
             background-color: #fff;
+            padding: 2px 5px;
+            border-radius: 3px;
+            z-index: 10;
+        }
+
+        /* Panel labels for confirmation */
+        .panel-label {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 8px;
+            color: #ff0000;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 2px 5px;
             border-radius: 3px;
         }
@@ -137,6 +150,7 @@
     <div class="leaflet">
         <!-- Front Panel (Left - Cover) -->
         <div class="panel front">
+            <div class="panel-label">Panel 1: Front (Cover)</div>
             <h1>What Is Baptism?</h1>
             <p>A public way Jesus followers declare their decision to follow Him. A pastor or trusted friend stands with you in a baptism pool (or other water), immersing you as you lean back and rise up, symbolizing Jesus’ death, resurrection, and new life. We celebrate with prayer, cheering, and clapping from your MBC Church family!</p>
             <div class="icon">[Icon: Dove]</div>
@@ -146,6 +160,7 @@
 
         <!-- Middle Panel (Center - Main Content) -->
         <div class="panel middle">
+            <div class="panel-label">Panel 2: Middle</div>
             <h2>Why Baptism?</h2>
             <p>It’s a symbol of Jesus’ death, resurrection, and new life through Him. Leaning back under the water signifies your sins being washed away through Jesus’ death. Being raised out of the water pictures your new life, like Jesus’ resurrection. This public declaration mirrors how Jesus Himself was baptized.</p>
             <div class="icon">[Icon: Water]</div>
@@ -161,6 +176,7 @@
 
         <!-- Back Panel (Right - Practical Info) -->
         <div class="panel back">
+            <div class="panel-label">Panel 3: Back</div>
             <h2>How & When It Happens</h2>
             <p>Baptism usually happens during a Sunday morning service at Milton Baptist Church. Your MBC Church family will support and pray for you from that moment and for the rest of your journey with God.</p>
             <h3>What to Bring</h3>
