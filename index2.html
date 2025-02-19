@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Baptism Leaflet - Milton Baptist Church (Double-Sided, Full Content)</title>
-  <!-- Font Awesome for vector icons -->
+
+  <!-- Font Awesome for Icons -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -12,23 +13,41 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+
   <style>
+    /* -------------------- 
+       MAIN COLOURS & VARIABLES
+    -------------------- */
     :root {
-      --primary: #005F7D;
-      --secondary: #000;
-      --white: #fff;
-      --light-primary: #007a9c; /* A lighter tint of the primary colour */
+      --primary: #005F7D;   /* Main brand color */
+      --secondary: #000;    /* Black for text or accents */
+      --white: #fff;        /* White for backgrounds/text */
+      --gradient-dark: #005F7D;
+      --gradient-light: #1089AB; /* A lighter tint for gradients */
+    }
+
+    /* --------------------
+       BASIC RESET
+    -------------------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       font-family: 'Arial', sans-serif;
       background-color: var(--white);
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 0;
+      padding: 0;
     }
 
+    /* --------------------
+       LEAFLET CONTAINER
+    -------------------- */
     .leaflet {
       width: 210mm;
       height: 297mm;
@@ -42,85 +61,176 @@
       flex-direction: row;
     }
 
-    .side {
-      width: 210mm;
-      height: 297mm;
-      display: flex;
-      flex-direction: row;
+    .side-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: var(--primary);
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 5px 8px;
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      z-index: 99;
     }
 
+    /* Three Panels per side (total six) */
     .panel {
       width: 70mm;
       height: 100%;
-      padding: 5mm;
-      box-sizing: border-box;
+      padding: 8mm;
       position: relative;
       text-align: left;
-      border-right: 3px dashed var(--primary);
+      /* A subtle line to hint at folding; adjust or remove as you prefer */
+      border-right: 1px dashed rgba(0, 0, 0, 0.2);
+      overflow: hidden; /* So decorative shapes won't overflow */
     }
 
     .panel:last-child {
       border-right: none;
     }
 
-    /* Front Side Panels */
+    /* Decorative wave/diagonal shape in background (optional) */
+    .panel::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Text content over shapes */
+    .panel > * {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Panel Label for reference */
+    .panel-label {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      font-size: 8px;
+      color: var(--primary);
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 2px 5px;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+    }
+
+    /* --------------------
+       FOLD NOTES
+    -------------------- */
+    .fold-note {
+      position: absolute;
+      top: 10px;
+      right: -25px;
+      transform: rotate(90deg);
+      font-size: 8px;
+      color: var(--primary);
+      background-color: var(--white);
+      padding: 2px 5px;
+      border-radius: 3px;
+      z-index: 999;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* --------------------
+       FRONT SIDE BACKGROUNDS
+    -------------------- */
     .front-side .panel:nth-child(1) {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--light-primary) 100%);
+      background: linear-gradient(135deg, var(--gradient-dark) 0%, var(--gradient-light) 100%);
       color: var(--white);
+    }
+    .front-side .panel:nth-child(1)::before {
+      /* Subtle wave background image example (optional):
+         Replace with your own SVG or wave shape URL. */
+      background-image: url('https://www.svgrepo.com/show/399520/wave.svg');
     }
 
     .front-side .panel:nth-child(2) {
       background-color: var(--white);
       color: var(--secondary);
     }
-
-    .front-side .panel:nth-child(3) {
-      background: linear-gradient(135deg, var(--light-primary) 0%, var(--primary) 100%);
-      color: var(--white);
+    .front-side .panel:nth-child(2)::before {
+      background-image: url('https://www.svgrepo.com/show/399520/wave.svg');
+      transform: translateY(-50px);
     }
 
-    /* Back Side Panels */
-    .back-side .panel:nth-child(1) {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--light-primary) 100%);
+    .front-side .panel:nth-child(3) {
+      background: linear-gradient(135deg, var(--gradient-light) 0%, var(--gradient-dark) 100%);
       color: var(--white);
+    }
+    .front-side .panel:nth-child(3)::before {
+      background-image: url('https://www.svgrepo.com/show/399520/wave.svg');
+    }
+
+    /* --------------------
+       BACK SIDE BACKGROUNDS
+    -------------------- */
+    .back-side .panel:nth-child(1) {
+      background: linear-gradient(135deg, var(--gradient-dark) 0%, var(--gradient-light) 100%);
+      color: var(--white);
+    }
+    .back-side .panel:nth-child(1)::before {
+      background-image: url('https://www.svgrepo.com/show/399520/wave.svg');
     }
 
     .back-side .panel:nth-child(2) {
       background-color: var(--white);
       color: var(--secondary);
     }
-
-    .back-side .panel:nth-child(3) {
-      background: linear-gradient(135deg, var(--light-primary) 0%, var(--primary) 100%);
-      color: var(--white);
+    .back-side .panel:nth-child(2)::before {
+      background-image: url('https://www.svgrepo.com/show/399520/wave.svg');
     }
 
-    h1,
-    h2,
-    h3 {
-      margin: 0 0 8px;
-      line-height: 1.2;
+    .back-side .panel:nth-child(3) {
+      background: linear-gradient(135deg, var(--gradient-light) 0%, var(--gradient-dark) 100%);
+      color: var(--white);
+    }
+    .back-side .panel:nth-child(3)::before {
+      background-image: url('https://www.svgrepo.com/show/399520/wave.svg');
+    }
+
+    /* --------------------
+       HEADINGS & TEXT
+    -------------------- */
+    h1, h2, h3 {
+      margin-bottom: 6px;
     }
 
     h1 {
       font-size: 16px;
       font-weight: bold;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 4px;
+      line-height: 1.2;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+      padding-bottom: 3px;
+      margin-top: 0;
     }
 
     h2 {
       font-size: 14px;
       font-weight: bold;
-      border-bottom: 1px solid var(--primary);
-      padding-bottom: 3px;
-      margin-top: 10px;
+      line-height: 1.2;
+      margin-top: 6px;
+      margin-bottom: 3px;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
     }
 
     h3 {
       font-size: 12px;
       font-weight: bold;
-      margin-top: 8px;
+      line-height: 1.2;
+      margin-top: 6px;
+      margin-bottom: 3px;
     }
 
     p,
@@ -135,102 +245,86 @@
       list-style: none;
     }
 
-    ul li:before {
+    ul li::before {
       content: "✓ ";
-      color: var(--primary);
+      color: var(--gradient-dark);
       font-size: 10px;
     }
 
+    /* --------------------
+       ICONS & IMAGES
+    -------------------- */
     .icon {
-      width: 18mm;
-      height: 18mm;
-      margin: 4mm auto;
+      width: 24px;
+      height: 24px;
+      margin: 8px auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
-      color: var(--primary);
-      background-color: var(--white);
       border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 12px;
+      background-color: var(--white);
+      color: var(--gradient-dark);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
 
     .logo {
-      width: 35mm;
+      width: 40mm;
       height: auto;
-      margin: 4mm auto;
+      margin: 6mm auto;
       display: block;
+      z-index: 10;
     }
 
     .baptism-photo {
       width: 45mm;
       height: auto;
-      margin: 4mm auto;
+      margin: 6mm auto;
       display: block;
-      border-radius: 5px;
-      border: 2px solid var(--primary);
+      border-radius: 6px;
+      border: 2px solid rgba(255,255,255,0.5);
     }
 
+    /* --------------------
+       CONTACT DETAILS
+    -------------------- */
     .contact {
-      font-size: 8px;
+      font-size: 9px;
       margin-top: 8px;
-      border-top: 1px solid #ccc;
       padding-top: 4px;
+      border-top: 1px solid rgba(255,255,255,0.4);
     }
 
-    /* Ensure text wraps within narrow panels */
-    p,
-    li {
+    .contact a {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    /* --------------------
+       UTILITY CLASSES
+    -------------------- */
+    .highlight {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .mb-2 {
+      margin-bottom: 2px;
+    }
+
+    /* If you need to ensure text doesn't overflow in very narrow panels */
+    p, li {
       word-wrap: break-word;
-    }
-
-    /* Fold notes for clarity */
-    .fold-note {
-      position: absolute;
-      top: 10px;
-      right: -20px;
-      transform: rotate(90deg);
-      font-size: 8px;
-      color: var(--primary);
-      background-color: var(--white);
-      padding: 2px 5px;
-      border-radius: 3px;
-      z-index: 10;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Panel labels for confirmation */
-    .panel-label {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      font-size: 8px;
-      color: var(--primary);
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 2px 5px;
-      border-radius: 3px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Side labels */
-    .side-label {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 12px;
-      color: var(--primary);
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 5px;
-      border-radius: 3px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body>
-  <!-- Front Side of the Leaflet -->
+
+  <!-- =========== FRONT SIDE =========== -->
   <div class="leaflet front-side">
     <div class="side-label">Front Side</div>
-    <!-- Front Panel (Left - Cover) -->
+
+    <!-- PANEL 1: FRONT COVER -->
     <div class="panel">
       <div class="panel-label">Panel 1: Front (Cover)</div>
       <h1>What Is Baptism?</h1>
@@ -241,45 +335,65 @@
         Jesus’ death, resurrection, and new life. We celebrate with prayer,
         cheering, and clapping from your MBC Church family!
       </p>
+      <!-- Font Awesome Dove Icon -->
       <div class="icon"><i class="fas fa-dove"></i></div>
-      <img src="milton_baptist_logo.png" alt="Milton Baptist Church Logo" class="logo" />
+
+      <!-- Church Logo -->
+      <img
+        src="milton_baptist_logo.png"
+        alt="Milton Baptist Church Logo"
+        class="logo"
+      />
+
+      <!-- Fold note -->
       <div class="fold-note">Fold Here (Right Panel First)</div>
     </div>
 
-    <!-- Middle Panel (Center - Main Content) -->
+    <!-- PANEL 2: MIDDLE CONTENT -->
     <div class="panel">
       <div class="panel-label">Panel 2: Middle</div>
       <h2>Why Baptism?</h2>
       <p>
         It’s a symbol of Jesus’ death, resurrection, and new life through Him.
         Leaning back under the water signifies your sins being washed away.
-        Being raised out of the water reflects your new life, much like
-        Jesus’ resurrection.
+        Being raised out of the water reflects your new life—like Jesus’ own
+        resurrection. This public declaration mirrors how Jesus Himself
+        was baptized.
       </p>
+      <!-- Font Awesome Water Icon -->
       <div class="icon"><i class="fas fa-water"></i></div>
+
       <h3>Jesus’ Baptism</h3>
       <p>
         “Jesus then appeared, arriving at the Jordan River… John baptized Him,
         and the skies opened, with God’s Spirit descending like a dove and a
-        voice saying, ‘This is my Son, chosen and marked by my love, delight
-        of my life.’ — Matthew 3:13-17 MSG”
+        voice saying, ‘This is my Son, chosen and marked by my love,
+        delight of my life.’ — Matthew 3:13-17 MSG”
       </p>
       <p>
-        Reflect on this: What does the water feel like? How do you perceive God’s
-        affirmation in that moment?
+        Reread the story and imagine yourself in that moment. How does it feel
+        to hear God’s approval?
       </p>
-      <img src="baptism_photo.jpg" alt="Someone being baptized at MBC" class="baptism-photo" />
+
+      <!-- Baptism Photo -->
+      <img
+        src="baptism_photo.jpg"
+        alt="Someone being baptized at MBC"
+        class="baptism-photo"
+      />
+
+      <!-- Fold note -->
       <div class="fold-note">Fold Here (Left Panel Over Right)</div>
     </div>
 
-    <!-- Back Panel (Right - Practical Info) -->
+    <!-- PANEL 3: PRACTICAL INFO -->
     <div class="panel">
       <div class="panel-label">Panel 3: Back</div>
       <h2>How & When It Happens</h2>
       <p>
-        Baptism usually takes place during a Sunday morning service at Milton
-        Baptist Church. Your church family will support and pray for you throughout
-        your journey with God.
+        Baptism usually takes place during a Sunday morning service at
+        Milton Baptist Church. Your MBC family will celebrate, support,
+        and pray for you from that day onward.
       </p>
       <h3>What to Bring</h3>
       <ul>
@@ -288,70 +402,89 @@
         <li>Bag for wet clothes</li>
       </ul>
       <p>
-        Wear clothing that’s suitable for getting wet and not see-through. If you’re
-        anxious about being in front or going underwater, don’t worry—there’s
-        flexibility in our approach.
+        Wear clothing that’s suitable for getting wet and is not see-through.
+        If you’re anxious about being at the front or going underwater,
+        don’t worry—there’s flexibility in how we do it.
       </p>
+
+      <!-- Font Awesome T-Shirt Icon as a stand-in for clothes -->
       <div class="icon"><i class="fas fa-tshirt"></i></div>
     </div>
   </div>
 
-  <!-- Back Side of the Leaflet -->
+
+  <!-- =========== BACK SIDE =========== -->
   <div class="leaflet back-side">
     <div class="side-label">Back Side</div>
-    <!-- Left Panel (Back Side - Additional Content) -->
+
+    <!-- PANEL 4: ADDITIONAL CONTENT -->
     <div class="panel">
       <div class="panel-label">Panel 4: Back Left</div>
       <h1>Jesus’ Mission for Baptism</h1>
       <p>
-        “Go out and train everyone you meet, far and near, in this way of life,
-        marking them by baptism in the threefold name: Father, Son, and Holy Spirit.”
-        — Matthew 28:19 MSG
+        “Go out and train everyone you meet, far and near, in this way of
+        life, marking them by baptism in the threefold name: Father, Son,
+        and Holy Spirit.” — Matthew 28:19 MSG
       </p>
       <p>
-        Baptism is a step of public declaration. At Milton Baptist Church, we celebrate
-        your faith journey with joy and unity.
+        When you’ve said yes to Jesus’ way, baptism is a clear next step the
+        Bible encourages. At Milton Baptist Church, we celebrate this step as
+        a joyful, public declaration of your faith.
       </p>
+      <!-- Font Awesome Cross Icon -->
       <div class="icon"><i class="fas fa-cross"></i></div>
+
+      <!-- Fold note -->
       <div class="fold-note">Fold Here (Right Panel First)</div>
     </div>
 
-    <!-- Middle Panel (Back Side - Testimony & Reflection) -->
+    <!-- PANEL 5: TESTIMONY & REFLECTION -->
     <div class="panel">
       <div class="panel-label">Panel 5: Back Middle</div>
       <h2>Your Baptism Testimony</h2>
       <p>
-        Share your personal journey with Jesus. Whether through a short passage, a video clip,
-        or a spoken word, your testimony is a powerful story of transformation.
+        Prepare your personal story of how and why you felt called to be
+        baptized. This could be a short written passage, a video clip, or read
+        by someone else if you prefer—it’s flexible. Reflect on your journey
+        with Jesus and how baptism is a meaningful new beginning.
       </p>
       <h3>Reflection Questions</h3>
       <ul>
         <li>What does baptism mean to you personally?</li>
         <li>How has Jesus changed your life?</li>
       </ul>
+      <!-- Font Awesome Comment Icon -->
       <div class="icon"><i class="fas fa-comment"></i></div>
     </div>
 
-    <!-- Right Panel (Back Side - Contact & Invitation) -->
+    <!-- PANEL 6: CONTACT & INVITATION -->
     <div class="panel">
       <div class="panel-label">Panel 6: Back Right</div>
       <h2>Next Steps & Invitation</h2>
       <p>
-        Invite your family, friends, and community to celebrate what God has done for you.
-        It’s a special time to share your joy and faith.
+        It’s a wonderful opportunity to invite your friends and family
+        (and the rest of the church) to celebrate what God has done in
+        your life. It’ll be a special and joyful time for everyone present.
+        If you have further questions, talk to
+        <span class="highlight">Rev. Dr. Lou Luft</span> or someone on
+        the leadership team.
       </p>
+      <!-- Font Awesome Envelope Icon -->
       <div class="icon"><i class="fas fa-envelope"></i></div>
+
       <div class="contact">
         <p>
-          <strong>Contact Rev. Dr. Lou Luft</strong><br />
+          <strong>Contact Rev. Dr. Lou Luft</strong><br/>
           Email:
-          <a href="mailto:lou.luft@milton-baptist.org.uk" style="color: var(--primary);">
+          <a href="mailto:lou.luft@milton-baptist.org.uk">
             lou.luft@milton-baptist.org.uk
-          </a><br />
-          Address: Milton Baptist Church, Baytree Road, Weston-super-Mare, Somerset, BS22 8HJ, UK<br />
-          Phone: 07384 252147<br />
+          </a><br/>
+          Milton Baptist Church<br/>
+          Baytree Road, Weston-super-Mare,<br/>
+          Somerset, BS22 8HJ, UK<br/>
+          Phone: 07384 252147<br/>
           Website:
-          <a href="https://www.milton-baptist.org.uk" target="_blank" style="color: var(--primary);">
+          <a href="https://www.milton-baptist.org.uk" target="_blank">
             www.milton-baptist.org.uk
           </a>
         </p>
