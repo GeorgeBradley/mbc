@@ -1,281 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baptism Leaflet - Milton Baptist Church (Double-Sided, Full Content)</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baptism Leaflet - Milton Baptist Church (Double-Sided, Full Content)</title>
+  <!-- Font Awesome for vector icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4C+Xk6S2A9xwS1Z4h5R9jz9W8RfIj6Y9g2l2+7S6oSxXU+9+6X9G5Gz6+F4+0QeK7sw0g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    :root {
+      --primary: #005F7D;
+      --secondary: #000;
+      --white: #fff;
+      --light-primary: #007a9c; /* A lighter tint of the primary colour */
+    }
 
-        .leaflet {
-            width: 210mm;
-            height: 297mm;
-            display: flex;
-            flex-direction: row;
-            margin: 20px auto;
-            border: 1px solid #ccc;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            background-color: #fff;
-            overflow: hidden;
-            position: relative;
-        }
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .side {
-            width: 210mm;
-            height: 297mm;
-            display: flex;
-            flex-direction: row;
-        }
+    .leaflet {
+      width: 210mm;
+      height: 297mm;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      background-color: var(--white);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+    }
 
-        .panel {
-            width: 70mm;
-            height: 100%;
-            padding: 5mm;
-            box-sizing: border-box;
-            position: relative;
-            text-align: left;
-            border-right: 3px dashed #ff0000; /* Red dashed line for fold (visible in browser) */
-        }
+    .side {
+      width: 210mm;
+      height: 297mm;
+      display: flex;
+      flex-direction: row;
+    }
 
-        .panel:last-child {
-            border-right: none; /* Remove the right border for the last panel */
-        }
+    .panel {
+      width: 70mm;
+      height: 100%;
+      padding: 5mm;
+      box-sizing: border-box;
+      position: relative;
+      text-align: left;
+      border-right: 3px dashed var(--primary);
+    }
 
-        .front-side .panel:nth-child(1) {
-            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); /* Light teal gradient (MBC colors) */
-            color: #004d40; /* Dark teal text */
-        }
+    .panel:last-child {
+      border-right: none;
+    }
 
-        .front-side .panel:nth-child(2) {
-            background-color: #fff;
-            color: #333;
-        }
+    /* Front Side Panels */
+    .front-side .panel:nth-child(1) {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--light-primary) 100%);
+      color: var(--white);
+    }
 
-        .front-side .panel:nth-child(3) {
-            background: linear-gradient(135deg, #f1f8e9 0%, #c8e6c9 100%); /* Light green gradient (MBC-inspired) */
-            color: #2e7d32; /* Dark green text */
-        }
+    .front-side .panel:nth-child(2) {
+      background-color: var(--white);
+      color: var(--secondary);
+    }
 
-        .back-side .panel:nth-child(1) {
-            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); /* Light teal gradient (MBC colors) */
-            color: #004d40; /* Dark teal text */
-        }
+    .front-side .panel:nth-child(3) {
+      background: linear-gradient(135deg, var(--light-primary) 0%, var(--primary) 100%);
+      color: var(--white);
+    }
 
-        .back-side .panel:nth-child(2) {
-            background-color: #fff;
-            color: #333;
-        }
+    /* Back Side Panels */
+    .back-side .panel:nth-child(1) {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--light-primary) 100%);
+      color: var(--white);
+    }
 
-        .back-side .panel:nth-child(3) {
-            background: linear-gradient(135deg, #f1f8e9 0%, #c8e6c9 100%); /* Light green gradient (MBC-inspired) */
-            color: #2e7d32; /* Dark green text */
-        }
+    .back-side .panel:nth-child(2) {
+      background-color: var(--white);
+      color: var(--secondary);
+    }
 
-        h1 {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 0 0 8px;
-            color: #004d40;
-        }
+    .back-side .panel:nth-child(3) {
+      background: linear-gradient(135deg, var(--light-primary) 0%, var(--primary) 100%);
+      color: var(--white);
+    }
 
-        h2 {
-            font-size: 14px;
-            margin: 12px 0 4px;
-        }
+    h1,
+    h2,
+    h3 {
+      margin: 0 0 8px;
+      line-height: 1.2;
+    }
 
-        h3 {
-            font-size: 12px;
-            margin: 8px 0 4px;
-        }
+    h1 {
+      font-size: 16px;
+      font-weight: bold;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 4px;
+    }
 
-        p, ul {
-            font-size: 10px;
-            line-height: 1.4;
-            margin: 0 0 8px;
-            color: #333;
-        }
+    h2 {
+      font-size: 14px;
+      font-weight: bold;
+      border-bottom: 1px solid var(--primary);
+      padding-bottom: 3px;
+      margin-top: 10px;
+    }
 
-        ul {
-            padding-left: 15px;
-            list-style: none;
-        }
+    h3 {
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
 
-        ul li:before {
-            content: "✓ ";
-            color: #2e7d32;
-            font-size: 10px;
-        }
+    p,
+    ul {
+      font-size: 10px;
+      line-height: 1.4;
+      margin: 0 0 8px;
+    }
 
-        .icon {
-            width: 18mm;
-            height: 18mm;
-            margin: 4mm auto;
-            background-color: #ddd;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8px;
-            color: #666;
-        }
+    ul {
+      padding-left: 15px;
+      list-style: none;
+    }
 
-        .logo {
-            width: 35mm;
-            height: auto;
-            margin: 4mm auto;
-            display: block;
-        }
+    ul li:before {
+      content: "✓ ";
+      color: var(--primary);
+      font-size: 10px;
+    }
 
-        .baptism-photo {
-            width: 45mm;
-            height: auto;
-            margin: 4mm auto;
-            display: block;
-            border-radius: 5px;
-        }
+    .icon {
+      width: 18mm;
+      height: 18mm;
+      margin: 4mm auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--primary);
+      background-color: var(--white);
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .contact {
-            font-size: 8px;
-            color: #004d40;
-            margin-top: 8px;
-            border-top: 1px solid #ddd;
-            padding-top: 4px;
-        }
+    .logo {
+      width: 35mm;
+      height: auto;
+      margin: 4mm auto;
+      display: block;
+    }
 
-        /* Ensure text wraps within narrow panels */
-        p, li {
-            word-wrap: break-word;
-        }
+    .baptism-photo {
+      width: 45mm;
+      height: auto;
+      margin: 4mm auto;
+      display: block;
+      border-radius: 5px;
+      border: 2px solid var(--primary);
+    }
 
-        /* Fold notes for clarity */
-        .fold-note {
-            position: absolute;
-            top: 10px;
-            right: -20px;
-            transform: rotate(90deg);
-            font-size: 8px;
-            color: #ff0000;
-            background-color: #fff;
-            padding: 2px 5px;
-            border-radius: 3px;
-            z-index: 10;
-        }
+    .contact {
+      font-size: 8px;
+      margin-top: 8px;
+      border-top: 1px solid #ccc;
+      padding-top: 4px;
+    }
 
-        /* Panel labels for confirmation */
-        .panel-label {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            font-size: 8px;
-            color: #ff0000;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
+    /* Ensure text wraps within narrow panels */
+    p,
+    li {
+      word-wrap: break-word;
+    }
 
-        /* Side labels */
-        .side-label {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 12px;
-            color: #ff0000;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 5px;
-            border-radius: 3px;
-        }
-    </style>
+    /* Fold notes for clarity */
+    .fold-note {
+      position: absolute;
+      top: 10px;
+      right: -20px;
+      transform: rotate(90deg);
+      font-size: 8px;
+      color: var(--primary);
+      background-color: var(--white);
+      padding: 2px 5px;
+      border-radius: 3px;
+      z-index: 10;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Panel labels for confirmation */
+    .panel-label {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      font-size: 8px;
+      color: var(--primary);
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 2px 5px;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Side labels */
+    .side-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: var(--primary);
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 5px;
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
 <body>
-    <!-- Front Side of the Leaflet -->
-    <div class="leaflet front-side">
-        <div class="side-label">Front Side</div>
-        <!-- Front Panel (Left - Cover) -->
-        <div class="panel">
-            <div class="panel-label">Panel 1: Front (Cover)</div>
-            <h1>What Is Baptism?</h1>
-            <p>A public way Jesus followers declare their decision to follow Him. A pastor or trusted friend stands with you in a baptism pool (or other water), immersing you as you lean back and rise up, symbolizing Jesus’ death, resurrection, and new life. We celebrate with prayer, cheering, and clapping from your MBC Church family!</p>
-            <div class="icon">[Icon: Dove]</div>
-            <img src="milton_baptist_logo.png" alt="Milton Baptist Church Logo" class="logo" style="display: block;">
-            <div class="fold-note">Fold Here (Right Panel First)</div>
-        </div>
-
-        <!-- Middle Panel (Center - Main Content) -->
-        <div class="panel">
-            <div class="panel-label">Panel 2: Middle</div>
-            <h2>Why Baptism?</h2>
-            <p>It’s a symbol of Jesus’ death, resurrection, and new life through Him. Leaning back under the water signifies your sins being washed away through Jesus’ death. Being raised out of the water pictures your new life, like Jesus’ resurrection. This public declaration mirrors how Jesus Himself was baptized.</p>
-            <div class="icon">[Icon: Water]</div>
-            <h3>Jesus’ Baptism</h3>
-            <p>“Jesus then appeared, arriving at the Jordan River… John baptized Him, and the skies opened, with God’s Spirit descending like a dove and a voice saying, ‘This is my Son, chosen and marked by my love, delight of my life.’ — Matthew 3:13-17 MSG”</p>
-            <p>Now, reread the story and imagine yourself as the person being baptized by John. What’s the water like? How does it feel to hear God’s approval? What does God’s voice say to you specifically? How do you notice the Holy Spirit’s presence?</p>
-            <div class="baptism-photo">[Photo: Someone being baptized at MBC]</div>
-            <div class="fold-note">Fold Here (Left Panel Over Right)</div>
-        </div>
-
-        <!-- Back Panel (Right - Practical Info) -->
-        <div class="panel">
-            <div class="panel-label">Panel 3: Back</div>
-            <h2>How & When It Happens</h2>
-            <p>Baptism usually happens during a Sunday morning service at Milton Baptist Church. Your MBC Church family will support and pray for you from that moment and for the rest of your journey with God.</p>
-            <h3>What to Bring</h3>
-            <ul>
-                <li>Towel</li>
-                <li>Change of clothes</li>
-                <li>Bag for wet clothes</li>
-            </ul>
-            <p>Wear clothing suitable for getting wet that won’t be see-through when wet. If you’re anxious about being at the front or going underwater, don’t worry—there’s flexibility in how we do it.</p>
-            <div class="icon">[Icon: Towel]</div>
-        </div>
+  <!-- Front Side of the Leaflet -->
+  <div class="leaflet front-side">
+    <div class="side-label">Front Side</div>
+    <!-- Front Panel (Left - Cover) -->
+    <div class="panel">
+      <div class="panel-label">Panel 1: Front (Cover)</div>
+      <h1>What Is Baptism?</h1>
+      <p>
+        A public way Jesus followers declare their decision to follow Him.
+        A pastor or trusted friend stands with you in a baptism pool (or
+        other water), immersing you as you lean back and rise up—symbolizing
+        Jesus’ death, resurrection, and new life. We celebrate with prayer,
+        cheering, and clapping from your MBC Church family!
+      </p>
+      <div class="icon"><i class="fas fa-dove"></i></div>
+      <img src="milton_baptist_logo.png" alt="Milton Baptist Church Logo" class="logo" />
+      <div class="fold-note">Fold Here (Right Panel First)</div>
     </div>
 
-    <!-- Back Side of the Leaflet -->
-    <div class="leaflet back-side">
-        <div class="side-label">Back Side</div>
-        <!-- Left Panel (Back Side - Additional Content) -->
-        <div class="panel">
-            <div class="panel-label">Panel 4: Back Left</div>
-            <h1>Jesus’ Mission for Baptism</h1>
-            <p>“Go out and train everyone you meet, far and near, in this way of life, marking them by baptism in the threefold name: Father, Son, and Holy Spirit.” — Matthew 28:19 MSG</p>
-            <p>When you’ve said yes to Jesus’ way, baptism is a next step the Bible encourages. At Milton Baptist Church, we celebrate this step as a joyful public declaration of your faith.</p>
-            <div class="icon">[Icon: Cross]</div>
-            <div class="fold-note">Fold Here (Right Panel First)</div>
-        </div>
-
-        <!-- Middle Panel (Back Side - Testimony & Reflection) -->
-        <div class="panel">
-            <div class="panel-label">Panel 5: Back Middle</div>
-            <h2>Your Baptism Testimony</h2>
-            <p>Prepare your story of how and why you felt called to be baptized. This can be a short passage to read, a video clip, or read by someone else if you prefer—it’s flexible! Reflect on your journey with Jesus and how baptism marks a new beginning in your faith.</p>
-            <h3>Reflection Questions</h3>
-            <ul>
-                <li>What does baptism mean to you personally?</li>
-                <li>How has Jesus changed your life?</li>
-            </ul>
-            <div class="icon">[Icon: Speech Bubble]</div>
-        </div>
-
-        <!-- Right Panel (Back Side - Contact & Invitation) -->
-        <div class="panel">
-            <div class="panel-label">Panel 6: Back Right</div>
-            <h2>Next Steps & Invitation</h2>
-            <p>It’s a great opportunity to invite your family and friends (and the rest of the church) to celebrate what God has done for you. It’ll be a special and joyful time for you and everyone present. If you have further questions, please chat to Rev. Dr. Lou Luft or someone else on the leadership team.</p>
-            <div class="icon">[Icon: Invitation]</div>
-            <div class="contact">
-                <p><strong>Contact Rev. Dr. Lou Luft</strong><br>
-                Email: lou.luft@milton-baptist.org.uk<br>
-                Milton Baptist Church, Baytree Road, Weston-super-Mare, Somerset, BS22 8HJ, UK<br>
-                Phone: 07384 252147<br>
-                Website: https://www.milton-baptist.org.uk</p>
-            </div>
-        </div>
+    <!-- Middle Panel (Center - Main Content) -->
+    <div class="panel">
+      <div class="panel-label">Panel 2: Middle</div>
+      <h2>Why Baptism?</h2>
+      <p>
+        It’s a symbol of Jesus’ death, resurrection, and new life through Him.
+        Leaning back under the water signifies your sins being washed away.
+        Being raised out of the water reflects your new life, much like
+        Jesus’ resurrection.
+      </p>
+      <div class="icon"><i class="fas fa-water"></i></div>
+      <h3>Jesus’ Baptism</h3>
+      <p>
+        “Jesus then appeared, arriving at the Jordan River… John baptized Him,
+        and the skies opened, with God’s Spirit descending like a dove and a
+        voice saying, ‘This is my Son, chosen and marked by my love, delight
+        of my life.’ — Matthew 3:13-17 MSG”
+      </p>
+      <p>
+        Reflect on this: What does the water feel like? How do you perceive God’s
+        affirmation in that moment?
+      </p>
+      <img src="baptism_photo.jpg" alt="Someone being baptized at MBC" class="baptism-photo" />
+      <div class="fold-note">Fold Here (Left Panel Over Right)</div>
     </div>
+
+    <!-- Back Panel (Right - Practical Info) -->
+    <div class="panel">
+      <div class="panel-label">Panel 3: Back</div>
+      <h2>How & When It Happens</h2>
+      <p>
+        Baptism usually takes place during a Sunday morning service at Milton
+        Baptist Church. Your church family will support and pray for you throughout
+        your journey with God.
+      </p>
+      <h3>What to Bring</h3>
+      <ul>
+        <li>Towel</li>
+        <li>Change of clothes</li>
+        <li>Bag for wet clothes</li>
+      </ul>
+      <p>
+        Wear clothing that’s suitable for getting wet and not see-through. If you’re
+        anxious about being in front or going underwater, don’t worry—there’s
+        flexibility in our approach.
+      </p>
+      <div class="icon"><i class="fas fa-tshirt"></i></div>
+    </div>
+  </div>
+
+  <!-- Back Side of the Leaflet -->
+  <div class="leaflet back-side">
+    <div class="side-label">Back Side</div>
+    <!-- Left Panel (Back Side - Additional Content) -->
+    <div class="panel">
+      <div class="panel-label">Panel 4: Back Left</div>
+      <h1>Jesus’ Mission for Baptism</h1>
+      <p>
+        “Go out and train everyone you meet, far and near, in this way of life,
+        marking them by baptism in the threefold name: Father, Son, and Holy Spirit.”
+        — Matthew 28:19 MSG
+      </p>
+      <p>
+        Baptism is a step of public declaration. At Milton Baptist Church, we celebrate
+        your faith journey with joy and unity.
+      </p>
+      <div class="icon"><i class="fas fa-cross"></i></div>
+      <div class="fold-note">Fold Here (Right Panel First)</div>
+    </div>
+
+    <!-- Middle Panel (Back Side - Testimony & Reflection) -->
+    <div class="panel">
+      <div class="panel-label">Panel 5: Back Middle</div>
+      <h2>Your Baptism Testimony</h2>
+      <p>
+        Share your personal journey with Jesus. Whether through a short passage, a video clip,
+        or a spoken word, your testimony is a powerful story of transformation.
+      </p>
+      <h3>Reflection Questions</h3>
+      <ul>
+        <li>What does baptism mean to you personally?</li>
+        <li>How has Jesus changed your life?</li>
+      </ul>
+      <div class="icon"><i class="fas fa-comment"></i></div>
+    </div>
+
+    <!-- Right Panel (Back Side - Contact & Invitation) -->
+    <div class="panel">
+      <div class="panel-label">Panel 6: Back Right</div>
+      <h2>Next Steps & Invitation</h2>
+      <p>
+        Invite your family, friends, and community to celebrate what God has done for you.
+        It’s a special time to share your joy and faith.
+      </p>
+      <div class="icon"><i class="fas fa-envelope"></i></div>
+      <div class="contact">
+        <p>
+          <strong>Contact Rev. Dr. Lou Luft</strong><br />
+          Email:
+          <a href="mailto:lou.luft@milton-baptist.org.uk" style="color: var(--primary);">
+            lou.luft@milton-baptist.org.uk
+          </a><br />
+          Address: Milton Baptist Church, Baytree Road, Weston-super-Mare, Somerset, BS22 8HJ, UK<br />
+          Phone: 07384 252147<br />
+          Website:
+          <a href="https://www.milton-baptist.org.uk" target="_blank" style="color: var(--primary);">
+            www.milton-baptist.org.uk
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
