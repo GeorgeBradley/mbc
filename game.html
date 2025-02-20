@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bones Escape</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        // Canvas setup
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Resize canvas to fit the screen
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Game states
+        const GAME_STATES = {
+            START: 'start',
+            PLAYING: 'playing',
+            GAME_OVER: 'game_over'
+        };
+        let currentState = GAME_STATES.START;
+
+        // Game world dimensions
+        const designCellSize = 32; // Base size for game elements
+        const levelWidth = 10;     // Grid width in cells
+        const levelHeight = 15;    // Grid height in cells
+        const gameWidth = levelWidth * designCellSize;
+        const gameHeight = levelHeight * designCellSize;
+
+        // Level data (JSON-like structure)
+        const level1 = [
+            [1,1,1,1,1,1,1,1,1,1], // 1 = wall/platform, 5 = trap, 0 = empty
+            [1,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,1],
+            [1,1,0,0,1,0,0,1,0,1],
+            [1,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,1],
+            [1,1,0,0,1,0,0,1,0,1],
+            [1,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,1],
+            [1,1,0,0,1,0,0,1,0,1],
+            [1,0,0,0,0,0,0,0,0,1],
+            [1,0,0,0,0,0,0,0,0,1],
+            [1,5,0,0,5,0,0,5,0,1], // Traps on row 13
+            [1,1,1,1,1,1,1,1,1,1]
+        ];
+
+        // Player (Bones) object
+        let bones = {
+            x: 1 * designCellSize,       // Starting position
+            y: 13 * designCellSize,
+            width: designCellSize,
+            height: designCellSize,
+            vx: 0,                      // Velocity X
+            vy: 0,                      // Velocity Y
+            onGround: false
+        };
+
+        // Game objects
+        let keys = [{col: 2, row: 3}];   // Key position
+        let door = {col: 8, row: 3};     // Door position
+        let hasKey = false;
+
+        // Drawing functions
+        function drawStartScreen() {
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = '48px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Bones Escape', canvas.width / 2, canvas.height / 3);
+            ctx.font = '24px Arial';
+            ctx.fillText('Tap to Start', canvas.width / 2, canvas.height / 2);
+        }
+
+        function drawGameOverScreen() {
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = '48px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Game Over', canvas.width / 2, canvas.height / 3);
+            ctx.font = '24px Arial';
+            ctx.fillText('Tap to Restart', canvas.width / 2, canvas.height / 2);
+        }
+
+        function drawLevel() {
+            for (let row = 0; row < levelHeight; row++) {
+                for (let col = 0; col < levelWidth; col++) {
+                    let cell = level1[row][col];
+                    if (cell === 1) {
+                        ctx.fillStyle = '#555'; // Gray walls
+                        ctx.fillRect(col * designCellSize, row * designCellSize, designCellSize, designCellSize);
+                    } else if (cell === 5) {
+                        ctx.fillStyle = '#f00'; // Red traps
+                        ctx.fillRect(col * designCellSize, row * designCellSize, designCellSize, designCellSize);
+                    }
+                }
+            }
+        }
+
+        function drawKeys() {
+            ctx.fillStyle = '#ff0'; // Yellow keys
+            for (let key of keys) {
+                ctx.fillRect(key.col * designCellSize, key.row * designCellSize, designCellSize, designCellSize);
+            }
+        }
+
+        function drawDoor() {
+            ctx.fillStyle = '#8b4513'; // Brown door
+            ctx.fillRect(door.col * designCellSize, door.row * designCellSize, designCellSize, designCellSize);
+        }
+
+        function drawBones() {
+            ctx.fillStyle = '#f00'; // Red for Bones
+            ctx.fillRect(bones.x, bones.y, bones.width, bones.height);
+        }
+
+        function drawButtons() {
+            ctx.fillStyle = '#aaa'; // Gray buttons
+            // Left button
+            ctx.fillRect(10, canvas.height - 60, 50, 50);
+            // Right button
+            ctx.fillRect(canvas.width - 60, canvas.height - 60, 50, 50);
+            // Jump button
+            ctx.fillRect(canvas.width / 2 - 25, canvas.height - 60, 50, 50);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (currentState === GAME_STATES.START) {
+                drawStartScreen();
+            } else if (currentState === GAME_STATES.PLAYING) {
+                let scale = canvas.width / gameWidth;
+                ctx.save();
+                ctx.scale(scale, scale);
+                drawLevel();
+                drawKeys();
+                drawDoor();
+                drawBones();
+                ctx.restore();
+                drawButtons();
+            } else if (currentState === GAME_STATES.GAME_OVER) {
+                drawGameOverScreen();
+            }
+        }
+
+        // Update game state
+        function update() {
+            if (currentState !== GAME_STATES.PLAYING) return;
+
+            // Apply gravity
+            bones.vy += 0.5;
+
+            // Horizontal movement
+            let newX = bones.x + bones.vx;
+            let left = newX;
+            let right = newX + bones.width;
+            let colLeft = Math.floor(left / designCellSize);
+            let colRight = Math.floor(right / designCellSize);
+            let rowTop = Math.floor(bones.y / designCellSize);
+            let rowBottom = Math.floor((bones.y + bones.height) / designCellSize);
+            let colliding = false;
+            for (let row = rowTop; row <= rowBottom && !colliding; row++) {
+                for (let col = colLeft; col <= colRight; col++) {
+                    if (col < 0 || col >= levelWidth || row < 0 || row >= levelHeight || level1[row][col] === 1) {
+                        colliding = true;
+                        break;
+                    }
+                }
+            }
+            if (!colliding) {
+                bones.x = newX;
+            } else {
+                if (bones.vx > 0) {
+                    bones.x = colLeft * designCellSize - bones.width;
+                } else if (bones.vx < 0) {
+                    bones.x = (colRight + 1) * designCellSize;
+                }
+            }
+
+            // Vertical movement
+            let newY = bones.y + bones.vy;
+            let top = newY;
+            let bottom = newY + bones.height;
+            rowTop = Math.floor(top / designCellSize);
+            rowBottom = Math.floor(bottom / designCellSize);
+            colLeft = Math.floor(bones.x / designCellSize);
+            colRight = Math.floor((bones.x + bones.width) / designCellSize);
+            colliding = false;
+            for (let row = rowTop; row <= rowBottom && !colliding; row++) {
+                for (let col = colLeft; col <= colRight; col++) {
+                    if (col < 0 || col >= levelWidth || row < 0 || row >= levelHeight || level1[row][col] === 1) {
+                        colliding = true;
+                        break;
+                    }
+                }
+            }
+            if (!colliding) {
+                bones.y = newY;
+                bones.onGround = false;
+            } else {
+                if (bones.vy > 0) {
+                    bones.y = rowTop * designCellSize - bones.height;
+                    bones.vy = 0;
+                    bones.onGround = true;
+                } else if (bones.vy < 0) {
+                    bones.y = (rowBottom + 1) * designCellSize;
+                    bones.vy = 0;
+                }
+            }
+
+            // Check for key collection
+            for (let i = 0; i < keys.length; i++) {
+                let key = keys[i];
+                let keyX = key.col * designCellSize;
+                let keyY = key.row * designCellSize;
+                if (bones.x < keyX + designCellSize && bones.x + bones.width > keyX &&
+                    bones.y < keyY + designCellSize && bones.y + bones.height > keyY) {
+                    hasKey = true;
+                    keys.splice(i, 1);
+                    break;
+                }
+            }
+
+            // Check for door
+            let doorX = door.col * designCellSize;
+            let doorY = door.row * designCellSize;
+            if (hasKey && bones.x < doorX + designCellSize && bones.x + bones.width > doorX &&
+                bones.y < doorY + designCellSize && bones.y + bones.height > doorY) {
+                currentState = GAME_STATES.GAME_OVER;
+            }
+
+            // Check for traps
+            const points = [
+                {x: bones.x, y: bones.y},
+                {x: bones.x + bones.width, y: bones.y},
+                {x: bones.x, y: bones.y + bones.height},
+                {x: bones.x + bones.width, y: bones.y + bones.height}
+            ];
+            for (let point of points) {
+                let col = Math.floor(point.x / designCellSize);
+                let row = Math.floor(point.y / designCellSize);
+                if (row >= 0 && row < levelHeight && col >= 0 && col < levelWidth && level1[row][col] === 5) {
+                    currentState = GAME_STATES.GAME_OVER;
+                    break;
+                }
+            }
+        }
+
+        // Touch input handling
+        function handleTouchStart(e) {
+            e.preventDefault();
+            let touch = e.touches[0];
+            let touchX = touch.clientX;
+            let touchY = touch.clientY;
+
+            if (currentState === GAME_STATES.START) {
+                currentState = GAME_STATES.PLAYING;
+            } else if (currentState === GAME_STATES.GAME_OVER) {
+                // Reset game
+                bones.x = 1 * designCellSize;
+                bones.y = 13 * designCellSize;
+                bones.vx = 0;
+                bones.vy = 0;
+                hasKey = false;
+                keys = [{col: 2, row: 3}];
+                currentState = GAME_STATES.PLAYING;
+            } else if (currentState === GAME_STATES.PLAYING) {
+                // Left button
+                if (touchX >= 10 && touchX <= 60 && touchY >= canvas.height - 60 && touchY <= canvas.height - 10) {
+                    bones.vx = -5;
+                }
+                // Right button
+                else if (touchX >= canvas.width - 60 && touchX <= canvas.width - 10 && touchY >= canvas.height - 60 && touchY <= canvas.height - 10) {
+                    bones.vx = 5;
+                }
+                // Jump button
+                else if (touchX >= canvas.width / 2 - 25 && touchX <= canvas.width / 2 + 25 && touchY >= canvas.height - 60 && touchY <= canvas.height - 10) {
+                    if (bones.onGround) {
+                        bones.vy = -10;
+                        bones.onGround = false;
+                    }
+                }
+            }
+        }
+
+        canvas.addEventListener('touchstart', handleTouchStart);
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            if (currentState === GAME_STATES.PLAYING) {
+                bones.vx = 0;
+            }
+        });
+
+        // Game loop
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+        gameLoop();
+    </script>
+</body>
+</html>
