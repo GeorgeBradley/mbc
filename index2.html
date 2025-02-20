@@ -20,11 +20,10 @@
   <style>
     :root {
       --primary: #005F7D;    /* Deep teal */
-      --secondary: #333;     /* Softer black for text */
-      --accent: #E8A87C;     /* Warm coral for highlights */
-      --white: #fff;
+      --secondary: #000;     /* Black */
+      --white: #fff;         /* White */
       --gradient-dark: #005F7D;
-      --gradient-light: #40C4FF; /* Brighter blue for gradients */
+      --gradient-light: #1089AB; /* Lightened shade of primary for gradient */
     }
 
     * {
@@ -211,6 +210,19 @@
     h1, h2, h3 {
       font-family: 'Lora', serif;
       margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px; /* Space for icon */
+    }
+
+    h1::before, h2::before, h3::before {
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: var(--primary);
     }
 
     h1 {
@@ -221,15 +233,21 @@
       padding-bottom: 4px;
       color: inherit;
     }
+    h1::before {
+      content: "\f1da"; /* Water drop for "What Is Baptism?" and "Jesus’ Mission" */
+    }
 
     h2 {
       font-size: 16px;
       font-weight: 600;
       line-height: 1.2;
       margin-top: 8px;
-      border-bottom: 1px solid var(--accent);
+      border-bottom: 1px solid var(--primary);
       padding-bottom: 3px;
-      color: var(--accent);
+      color: var(--primary);
+    }
+    h2::before {
+      content: "\f06c"; /* Leaf for "Why", "How", "Testimony", "Next Steps" */
     }
 
     h3 {
@@ -238,6 +256,9 @@
       line-height: 1.2;
       margin-top: 8px;
       color: inherit;
+    }
+    h3::before {
+      content: "\f075"; /* Comment bubble for subheadings */
     }
 
     p, ul {
@@ -253,7 +274,7 @@
 
     ul li::before {
       content: "✝ "; /* Cross symbol */
-      color: var(--accent);
+      color: var(--primary);
       font-size: 10px;
     }
 
@@ -268,7 +289,7 @@
       border-radius: 50%;
       font-size: 14px;
       background-color: var(--white);
-      color: var(--gradient-dark);
+      color: var(--primary);
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       transition: transform 0.3s ease;
     }
@@ -304,7 +325,7 @@
     }
 
     .contact a {
-      color: var(--accent);
+      color: var(--primary);
       text-decoration: none;
       transition: color 0.3s ease;
     }
@@ -315,7 +336,7 @@
 
     /* Utility Classes */
     .highlight {
-      color: var(--accent);
+      color: var(--primary);
       font-weight: 600;
     }
 
@@ -353,7 +374,7 @@
       <div class="panel-label">Panel 1: Front (Cover)</div>
       <h1>What Is Baptism?</h1>
       <p>
-        Baptism is a public way Jesus followers declare their decision to follow Jesus. A pastor or trusted friend stands with you in a baptism pool (or other body of water) and helps you lean back into the water and come right back up and out. They will then pray for you and usually there will be cheering and clapping!
+        Baptism is a public way Jesus followers <strong>declare their decision</strong> to follow Jesus. A pastor or trusted friend stands with you in a baptism pool (or other body of water) and helps you lean back into the water and come right back up and out. They will then pray for you and usually there will be <strong>cheering and clapping</strong>!
       </p>
       <div class="icon"><i class="fas fa-dove"></i></div>
       <img src="milton_baptist_logo.png" alt="Milton Baptist Church Logo" class="logo" />
@@ -365,15 +386,15 @@
       <div class="panel-label">Panel 2: Middle</div>
       <h2>Why Baptism?</h2>
       <p>
-        It’s a symbol representing Jesus’ death, resurrection, and new life through Him. Leaning back under the water symbolises your sins being washed away through Jesus’ death. Being raised out of the water is a picture of being brought back to a new life, like Jesus was raised back to life. This public declaration of our new life with Jesus is similar to the way Jesus Himself was baptized.
+        It’s a symbol representing Jesus’ death, resurrection, and <strong>new life</strong> through Him. Leaning back under the water <strong>symbolises your sins</strong> being washed away through Jesus’ death. Being raised out of the water is a picture of being brought back to a <strong>new life</strong>, like Jesus was raised back to life. This public declaration of our new life with Jesus is similar to the way Jesus Himself was baptized.
       </p>
       <div class="icon"><i class="fas fa-water"></i></div>
       <h3>Jesus’ Baptism</h3>
       <p>
-        “Jesus then appeared, arriving at the Jordan River from Galilee. He wanted John to baptize him. John objected, ‘I’m the one who needs to be baptized, not you!’ But Jesus insisted. ‘Do it. God’s work, putting things right all these centuries, is coming together right now in this baptism.’ So John did it. The moment Jesus came up out of the baptismal waters, the skies opened up and he saw God’s Spirit—it looked like a dove—descending and landing on him. And along with the Spirit, a voice: ‘This is my Son, chosen and marked by my love, delight of my life.’ — Matthew 3:13-17 MSG”
+        “Jesus then appeared, arriving at the Jordan River from Galilee. He wanted John to baptize him. John objected, ‘I’m the one who needs to be baptized, not you!’ But Jesus insisted. ‘Do it. <strong>God’s work</strong>, putting things right all these centuries, is coming together right now in this baptism.’ So John did it. The moment Jesus came up out of the baptismal waters, the skies opened up and he saw <strong>God’s Spirit</strong>—it looked like a dove—descending and landing on him. And along with the Spirit, a voice: ‘This is my Son, chosen and marked by my love, delight of my life.’ — Matthew 3:13-17 MSG”
       </p>
       <p>
-        Now, reread the story and imagine yourself as the person being baptized by John. What’s the water like? How does it feel to hear God’s approval? What does God’s voice say to you specifically? How do you notice the Holy Spirit’s presence?
+        Now, reread the story and imagine yourself as the person being baptized by John. What’s the water like? How does it feel to hear <strong>God’s approval</strong>? What does God’s voice say to you specifically? How do you notice the Holy Spirit’s presence?
       </p>
       <img src="baptism_photo.jpg" alt="Someone being baptized at MBC" class="baptism-photo" />
       <div class="fold-note">Fold Here (Left Panel Over Right)</div>
@@ -384,16 +405,16 @@
       <div class="panel-label">Panel 3: Back</div>
       <h2>How & When It Happens</h2>
       <p>
-        Baptism usually takes place during a Sunday morning service at Milton Baptist Church. The baptismal pool is filled and you are invited to enter the water. Your MBC family will celebrate, support, and pray for you from that day onward.
+        Baptism usually takes place during a <strong>Sunday morning service</strong> at Milton Baptist Church. The baptismal pool is filled and you are invited to enter the water. Your MBC family will celebrate, support, and pray for you from that day onward.
       </p>
       <h3>What to Bring</h3>
       <ul>
         <li>A towel</li>
-        <li>Change of clothes</li>
+        <li><strong>Change of clothes</strong></li>
         <li>A bag for the wet ones!</li>
       </ul>
       <p>
-        It is best to wear clothing suitable for getting wet that will not be see-through when it gets wet. We understand that some people are particularly anxious about being at the front or about going under the water but don’t let this be a barrier—there is flexibility about how we do this.
+        It is best to wear clothing suitable for getting wet that will not be see-through when it gets wet. We understand that some people are particularly anxious about being at the front or about going under the water but <strong>don’t let this be a barrier</strong>—there is flexibility about how we do this.
       </p>
       <div class="icon"><i class="fas fa-tshirt"></i></div>
     </div>
@@ -408,10 +429,10 @@
       <div class="panel-label">Panel 4: Back Left</div>
       <h1>Jesus’ Mission for Baptism</h1>
       <p>
-        “Go out and train everyone you meet, far and near, in this way of life, marking them by baptism in the threefold name: Father, Son, and Holy Spirit.” — Matthew 28:19 MSG
+        “Go out and train everyone you meet, far and near, in this way of life, marking them by <strong>baptism</strong> in the threefold name: Father, Son, and Holy Spirit.” — Matthew 28:19 MSG
       </p>
       <p>
-        When you’ve said yes to Jesus’ way of life, baptism is one of the next steps the bible encourages us to take.
+        When you’ve said yes to Jesus’ way of life, baptism is one of the <strong>next steps</strong> the bible encourages us to take.
       </p>
       <div class="icon"><i class="fas fa-cross"></i></div>
       <div class="fold-note">Fold Here (Right Panel First)</div>
@@ -422,15 +443,15 @@
       <div class="panel-label">Panel 5: Back Middle</div>
       <h2>Your Baptism Testimony</h2>
       <p>
-        You will be asked to prepare the story (Testimony) of how and why you felt you wanted to be Baptised. This can be done in a variety of ways: a short passage to read, a video clip and doesn’t have to read by you if you feel you can’t.
+        You will be asked to prepare the story (Testimony) of how and why you felt you wanted to be <strong>Baptised</strong>. This can be done in a variety of ways: a short passage to read, a video clip and doesn’t have to read by you if you feel you can’t.
       </p>
       <h3>Reflection Questions</h3>
       <ul>
         <li>What does baptism mean to you personally?</li>
-        <li>How has Jesus changed your life?</li>
+        <li>How has Jesus <strong>changed your life</strong>?</li>
       </ul>
       <p>
-        Pause to consider: What would it be like for you to take this next step of following Jesus?
+        Pause to consider: What would it be like for you to take this <strong>next step</strong> of following Jesus?
       </p>
       <div class="icon"><i class="fas fa-comment"></i></div>
     </div>
@@ -440,7 +461,7 @@
       <div class="panel-label">Panel 6: Back Right</div>
       <h2>Next Steps & Invitation</h2>
       <p>
-        It’s a public declaration that says to the world, “I have decided to follow Jesus!” It’s a wonderful opportunity to invite your friends and family (and the rest of the church) to celebrate what God has done in your life. It’ll be a special and joyful time for everyone present. If you have further questions, please chat to <span class="highlight">Rev. Dr. Lou Luft</span> or someone else on the leadership team.
+        It’s a public declaration that says to the world, “<strong>I have decided to follow Jesus!</strong>” It’s a wonderful opportunity to invite your friends and family (and the rest of the church) to <strong>celebrate what God has done</strong> in your life. It’ll be a special and joyful time for everyone present. If you have further questions, please chat to <span class="highlight">Rev. Dr. Lou Luft</span> or someone else on the leadership team.
       </p>
       <div class="icon"><i class="fas fa-envelope"></i></div>
       <div class="contact">
