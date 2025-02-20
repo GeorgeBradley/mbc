@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Baptism Leaflet - Milton Baptist Church</title>
+  <title>Baptism Tri-Fold Leaflet - Milton Baptist Church</title>
 
   <!-- Font Awesome for Icons (6.0.0-beta3) -->
   <link
@@ -45,8 +45,8 @@
     }
 
     .leaflet {
-      width: 210mm;
-      height: 297mm;
+      width: 210mm; /* A4 width */
+      height: 297mm; /* A4 height */
       margin: 20px auto;
       border: 2px solid var(--primary);
       box-shadow: 0 8px 25px var(--shadow);
@@ -59,8 +59,8 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.98); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .side-label {
@@ -79,20 +79,14 @@
     }
 
     .panel {
-      width: 70mm;
-      height: 100%;
-      padding: 12mm;
+      width: 70mm; /* 210mm / 3 = 70mm per panel */
+      height: 297mm;
+      padding: 10mm;
       position: relative;
       text-align: left;
       border-right: 2px dashed rgba(0, 95, 125, 0.3);
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 95, 125, 0.02));
-    }
-
-    .panel:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px var(--shadow);
     }
 
     .panel:last-child {
@@ -118,8 +112,8 @@
       font-family: "Font Awesome 6 Free";
       font-weight: 900;
       position: absolute;
-      bottom: 12mm;
-      right: 12mm;
+      bottom: 10mm;
+      right: 10mm;
       font-size: 60px;
       color: rgba(0, 95, 125, 0.06);
       z-index: 0;
@@ -158,34 +152,34 @@
       font-weight: 600;
     }
 
-    /* Front Side Backgrounds */
-    .front-side .panel:nth-child(1) {
+    /* Front Side Backgrounds (Outside when folded) */
+    .front-side .panel:nth-child(1) { /* Front Cover */
       background: linear-gradient(135deg, var(--gradient-dark) 0%, var(--gradient-light) 100%);
       color: var(--white);
     }
 
-    .front-side .panel:nth-child(2) {
+    .front-side .panel:nth-child(2) { /* Inside Flap */
       background-color: var(--white);
       color: var(--secondary);
     }
 
-    .front-side .panel:nth-child(3) {
+    .front-side .panel:nth-child(3) { /* Back Cover */
       background: linear-gradient(135deg, var(--gradient-light) 0%, var(--gradient-dark) 100%);
       color: var(--white);
     }
 
-    /* Back Side Backgrounds */
-    .back-side .panel:nth-child(1) {
+    /* Back Side Backgrounds (Inside when folded) */
+    .back-side .panel:nth-child(1) { /* Left Inside */
       background: linear-gradient(135deg, var(--gradient-dark) 0%, var(--gradient-light) 100%);
       color: var(--white);
     }
 
-    .back-side .panel:nth-child(2) {
+    .back-side .panel:nth-child(2) { /* Middle Inside */
       background-color: var(--white);
       color: var(--secondary);
     }
 
-    .back-side .panel:nth-child(3) {
+    .back-side .panel:nth-child(3) { /* Right Inside */
       background: linear-gradient(135deg, var(--gradient-light) 0%, var(--gradient-dark) 100%);
       color: var(--white);
     }
@@ -262,13 +256,6 @@
       background-color: var(--white);
       color: var(--primary);
       box-shadow: 0 3px 8px var(--shadow);
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    .icon:hover {
-      transform: scale(1.15);
-      background-color: var(--gradient-light);
-      color: var(--white);
     }
 
     .logo {
@@ -301,11 +288,6 @@
       color: var(--primary);
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .contact a:hover {
-      color: var(--white);
     }
 
     /* Utility Classes */
@@ -327,39 +309,30 @@
         box-shadow: none;
         border: 1px solid #ccc;
       }
-      .panel:hover {
-        transform: none;
-        box-shadow: none;
-      }
-      .icon:hover {
-        transform: none;
-        background-color: var(--white);
-        color: var(--primary);
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- =========== FRONT SIDE =========== -->
+  <!-- =========== FRONT SIDE (Outside when folded) =========== -->
   <div class="leaflet front-side">
-    <div class="side-label">Front Side</div>
+    <div class="side-label">Front Side (Outside)</div>
 
     <!-- PANEL 1: FRONT COVER -->
     <div class="panel">
-      <div class="panel-label">Panel 1: Front (Cover)</div>
+      <div class="panel-label">Panel 1: Front Cover</div>
       <h1><i class="fas fa-tint"></i> What Is Baptism?</h1>
       <p>
         Baptism is a public way Jesus followers <strong>declare their decision</strong> to follow Jesus. A pastor or trusted friend stands with you in a baptism pool (or other body of water) and helps you lean back into the water and come right back up and out. They will then pray for you and usually there will be <strong>cheering and clapping</strong>!
       </p>
       <div class="icon"><i class="fas fa-dove"></i></div>
       <img src="milton_baptist_logo.png" alt="Milton Baptist Church Logo" class="logo" />
-      <div class="fold-note">Fold Here (Right Panel First)</div>
+      <div class="fold-note">Fold Inward (Right Panel First)</div>
     </div>
 
-    <!-- PANEL 2: MIDDLE CONTENT -->
+    <!-- PANEL 2: INSIDE FLAP -->
     <div class="panel">
-      <div class="panel-label">Panel 2: Middle</div>
+      <div class="panel-label">Panel 2: Inside Flap</div>
       <h2><i class="fas fa-seedling"></i> Why Baptism?</h2>
       <p>
         It’s a symbol representing Jesus’ death, resurrection, and <strong>new life</strong> through Him. Leaning back under the water <strong>symbolises your sins</strong> being washed away through Jesus’ death. Being raised out of the water is a picture of being brought back to a <strong>new life</strong>, like Jesus was raised back to life. This public declaration of our new life with Jesus is similar to the way Jesus Himself was baptized.
@@ -373,12 +346,12 @@
         Now, reread the story and imagine yourself as the person being baptized by John. What’s the water like? How does it feel to hear <strong>God’s approval</strong>? What does God’s voice say to you specifically? How do you notice the Holy Spirit’s presence?
       </p>
       <img src="baptism_photo.jpg" alt="Someone being baptized at MBC" class="baptism-photo" />
-      <div class="fold-note">Fold Here (Left Panel Over Right)</div>
+      <div class="fold-note">Fold Inward (Left Panel Over Right)</div>
     </div>
 
-    <!-- PANEL 3: PRACTICAL INFO -->
+    <!-- PANEL 3: BACK COVER -->
     <div class="panel">
-      <div class="panel-label">Panel 3: Back</div>
+      <div class="panel-label">Panel 3: Back Cover</div>
       <h2><i class="fas fa-seedling"></i> How & When It Happens</h2>
       <p>
         Baptism usually takes place during a <strong>Sunday morning service</strong> at Milton Baptist Church. The baptismal pool is filled and you are invited to enter the water. Your MBC family will celebrate, support, and pray for you from that day onward.
@@ -396,13 +369,13 @@
     </div>
   </div>
 
-  <!-- =========== BACK SIDE =========== -->
+  <!-- =========== BACK SIDE (Inside when folded) =========== -->
   <div class="leaflet back-side">
-    <div class="side-label">Back Side</div>
+    <div class="side-label">Back Side (Inside)</div>
 
-    <!-- PANEL 4: ADDITIONAL CONTENT -->
+    <!-- PANEL 4: LEFT INSIDE -->
     <div class="panel">
-      <div class="panel-label">Panel 4: Back Left</div>
+      <div class="panel-label">Panel 4: Left Inside</div>
       <h1><i class="fas fa-tint"></i> Jesus’ Mission for Baptism</h1>
       <p>
         “Go out and train everyone you meet, far and near, in this way of life, marking them by <strong>baptism</strong> in the threefold name: Father, Son, and Holy Spirit.” — Matthew 28:19 MSG
@@ -411,12 +384,12 @@
         When you’ve said yes to Jesus’ way of life, baptism is one of the <strong>next steps</strong> the bible encourages us to take.
       </p>
       <div class="icon"><i class="fas fa-cross"></i></div>
-      <div class="fold-note">Fold Here (Right Panel First)</div>
+      <div class="fold-note">Fold Inward (Right Panel First)</div>
     </div>
 
-    <!-- PANEL 5: TESTIMONY & REFLECTION -->
+    <!-- PANEL 5: MIDDLE INSIDE -->
     <div class="panel">
-      <div class="panel-label">Panel 5: Back Middle</div>
+      <div class="panel-label">Panel 5: Middle Inside</div>
       <h2><i class="fas fa-seedling"></i> Your Baptism Testimony</h2>
       <p>
         You will be asked to prepare the story (Testimony) of how and why you felt you wanted to be <strong>Baptised</strong>. This can be done in a variety of ways: a short passage to read, a video clip and doesn’t have to read by you if you feel you can’t.
@@ -432,9 +405,9 @@
       <div class="icon"><i class="fas fa-comment"></i></div>
     </div>
 
-    <!-- PANEL 6: CONTACT & INVITATION -->
+    <!-- PANEL 6: RIGHT INSIDE -->
     <div class="panel">
-      <div class="panel-label">Panel 6: Back Right</div>
+      <div class="panel-label">Panel 6: Right Inside</div>
       <h2><i class="fas fa-seedling"></i> Next Steps & Invitation</h2>
       <p>
         It’s a public declaration that says to the world, “<strong>I have decided to follow Jesus!</strong>” It’s a wonderful opportunity to invite your friends and family (and the rest of the church) to <strong>celebrate what God has done</strong> in your life. It’ll be a special and joyful time for everyone present. If you have further questions, please chat to <span class="highlight">Rev. Dr. Lou Luft</span> or someone else on the leadership team.
