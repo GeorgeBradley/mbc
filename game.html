@@ -46,40 +46,41 @@
         const gameWidth = levelWidth * designCellSize;
         const gameHeight = levelHeight * designCellSize;
 
-        // Level data (JSON-like structure)
+        // Level data (2D array representing the game grid)
         const level1 = [
-            [1,1,1,1,1,1,1,1,1,1], // 1 = wall/platform, 5 = trap, 0 = empty
+            [1,1,1,1,1,1,1,1,1,1], // Row 0: Top wall
             [1,0,0,0,0,0,0,0,0,1],
             [1,0,0,0,0,0,0,0,0,1],
             [1,0,0,0,0,0,0,0,0,1],
-            [1,1,0,0,1,0,0,1,0,1],
+            [1,1,0,0,1,0,0,1,0,1], // Row 4: Platforms
             [1,0,0,0,0,0,0,0,0,1],
             [1,0,0,0,0,0,0,0,0,1],
-            [1,1,0,0,1,0,0,1,0,1],
+            [1,1,0,0,1,0,0,1,0,1], // Row 7: Platforms
             [1,0,0,0,0,0,0,0,0,1],
             [1,0,0,0,0,0,0,0,0,1],
-            [1,1,0,0,1,0,0,1,0,1],
+            [1,1,0,0,1,0,0,1,0,1], // Row 10: Platforms
             [1,0,0,0,0,0,0,0,0,1],
             [1,0,0,0,0,0,0,0,0,1],
-            [1,5,0,0,5,0,0,5,0,1], // Traps on row 13
-            [1,1,1,1,1,1,1,1,1,1]
+            [1,5,0,0,5,0,0,5,0,1], // Row 13: Traps
+            [1,1,1,1,1,1,1,1,1,1]  // Row 14: Ground
         ];
+        // Legend: 0 = empty, 1 = wall/platform, 5 = trap
 
         // Player (Bones) object
         let bones = {
-            x: 1 * designCellSize,       // Starting position
-            y: 13 * designCellSize,
+            x: 2 * designCellSize,       // Fixed: Changed from 1 to 2 to avoid trap
+            y: 13 * designCellSize,      // Starts just above ground
             width: designCellSize,
             height: designCellSize,
-            vx: 0,                      // Velocity X
-            vy: 0,                      // Velocity Y
-            onGround: false
+            vx: 0,                       // Horizontal velocity
+            vy: 0,                       // Vertical velocity
+            onGround: false              // Tracks if Bones is on a platform
         };
 
         // Game objects
         let keys = [{col: 2, row: 3}];   // Key position
         let door = {col: 8, row: 3};     // Door position
-        let hasKey = false;
+        let hasKey = false;              // Key possession flag
 
         // Drawing functions
         function drawStartScreen() {
@@ -109,10 +110,10 @@
                 for (let col = 0; col < levelWidth; col++) {
                     let cell = level1[row][col];
                     if (cell === 1) {
-                        ctx.fillStyle = '#555'; // Gray walls
+                        ctx.fillStyle = '#555'; // Gray for walls/platforms
                         ctx.fillRect(col * designCellSize, row * designCellSize, designCellSize, designCellSize);
                     } else if (cell === 5) {
-                        ctx.fillStyle = '#f00'; // Red traps
+                        ctx.fillStyle = '#f00'; // Red for traps
                         ctx.fillRect(col * designCellSize, row * designCellSize, designCellSize, designCellSize);
                     }
                 }
@@ -120,14 +121,14 @@
         }
 
         function drawKeys() {
-            ctx.fillStyle = '#ff0'; // Yellow keys
+            ctx.fillStyle = '#ff0'; // Yellow for keys
             for (let key of keys) {
                 ctx.fillRect(key.col * designCellSize, key.row * designCellSize, designCellSize, designCellSize);
             }
         }
 
         function drawDoor() {
-            ctx.fillStyle = '#8b4513'; // Brown door
+            ctx.fillStyle = '#8b4513'; // Brown for door
             ctx.fillRect(door.col * designCellSize, door.row * designCellSize, designCellSize, designCellSize);
         }
 
@@ -137,7 +138,7 @@
         }
 
         function drawButtons() {
-            ctx.fillStyle = '#aaa'; // Gray buttons
+            ctx.fillStyle = '#aaa'; // Gray for control buttons
             // Left button
             ctx.fillRect(10, canvas.height - 60, 50, 50);
             // Right button
@@ -243,7 +244,7 @@
                 }
             }
 
-            // Check for door
+            // Check for door (win condition)
             let doorX = door.col * designCellSize;
             let doorY = door.row * designCellSize;
             if (hasKey && bones.x < doorX + designCellSize && bones.x + bones.width > doorX &&
@@ -253,10 +254,10 @@
 
             // Check for traps
             const points = [
-                {x: bones.x, y: bones.y},
-                {x: bones.x + bones.width, y: bones.y},
-                {x: bones.x, y: bones.y + bones.height},
-                {x: bones.x + bones.width, y: bones.y + bones.height}
+                {x: bones.x, y: bones.y},                   // Top-left
+                {x: bones.x + bones.width, y: bones.y},     // Top-right
+                {x: bones.x, y: bones.y + bones.height},    // Bottom-left
+                {x: bones.x + bones.width, y: bones.y + bones.height} // Bottom-right
             ];
             for (let point of points) {
                 let col = Math.floor(point.x / designCellSize);
@@ -279,7 +280,7 @@
                 currentState = GAME_STATES.PLAYING;
             } else if (currentState === GAME_STATES.GAME_OVER) {
                 // Reset game
-                bones.x = 1 * designCellSize;
+                bones.x = 2 * designCellSize; // Fixed: Changed from 1 to 2 to avoid trap
                 bones.y = 13 * designCellSize;
                 bones.vx = 0;
                 bones.vy = 0;
